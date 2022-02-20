@@ -3,6 +3,7 @@
 const express = require('express');
 const cors = require('cors');
 const httpconfig = require('./config/https.config.json')
+const router_rank = require('./routes/rank');
 const router_user = require('./routes/user');
 const router_info = require('./routes/info');
 const router_model = require('./routes/csv_model');
@@ -25,6 +26,7 @@ https.createServer(options, app).listen(PORT, () => {
 app.use(cors()); // cors 이슈 해결 
 app.use(express.json()) // json 형식으로 데이터 받기
 app.use(errorHandler);
+app.use('/rank',router_rank);
 app.use('/user',router_user);
 app.use('/info',router_info);
 app.use('/model',router_model);

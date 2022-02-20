@@ -30,6 +30,16 @@ exports.getAllUser = (req, res, next) => {
   });
 };
 
+exports.getRank = (req, res, next) => {
+  let sql = "Call Get_ranking"
+  database.get().query(sql, function (err, data, fields) {
+    if(err) return next(new server_Error(err))
+    res.status(200).json({
+      data: data,
+    });
+  });
+};
+
 
 exports.getUser_with_email = (req, res, next) => {
   if (!req.params.email) {
