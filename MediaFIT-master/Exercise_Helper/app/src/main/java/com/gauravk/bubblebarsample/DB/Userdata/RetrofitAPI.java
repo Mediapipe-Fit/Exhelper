@@ -16,7 +16,6 @@ import retrofit2.http.POST;
 
 public interface RetrofitAPI {
 
-
     @GET("user")
     Call<dataall> get_All_data();
     /*
@@ -57,7 +56,18 @@ public interface RetrofitAPI {
     Call<user> Datapost(@FieldMap HashMap<String,Object> param);
 
 
-    @POST("/user")
+    //사용
+    /*
+    //Retrofit 선언
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://www.exhelper.site/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        RetrofitAPI retrofitAPI = retrofit.create(RetrofitAPI.class);
+     */
+
+    @POST("user")
     Call<post_response> dp(@Body user user);
     /*
     보내는 함수
