@@ -53,6 +53,14 @@ public class MyGlobal {
     private String birthday;
 
 
+
+    public String getEmail() { return this.email; }
+    public String getProfile() { return this.profile; }
+    public String getNickname() { return this.nickname; }
+    public String getGender() { return this.gender; }
+    public String getAge_range() { return this.age_range; }
+    public String getBirthday() { return this.birthday; }
+
     public boolean getmode() {return this.mode;}
     public String getExercise(){
         return this.Exercise;
