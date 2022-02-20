@@ -19,7 +19,7 @@ public interface RetrofitAPI {
     @GET("user")
     Call<dataall> get_All_data();
     /*
-    //유저 목록 가져오는 함수
+    유저 목록 가져오는 함수
     retrofitAPI.get_All_data().enqueue(new Callback<dataall>(){
         @Override
         public void onResponse(@NonNull Call<dataall> call, @NonNull Response<dataall> response){
