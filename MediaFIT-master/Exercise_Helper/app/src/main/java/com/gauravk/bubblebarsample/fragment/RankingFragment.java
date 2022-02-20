@@ -5,7 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.gauravk.bubblebarsample.DB.Userdata.user.RetrofitAPI;
+import com.gauravk.bubblebarsample.DB.Userdata.RetrofitAPI;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;

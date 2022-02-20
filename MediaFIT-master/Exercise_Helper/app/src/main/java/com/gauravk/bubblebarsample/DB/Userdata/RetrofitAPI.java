@@ -1,4 +1,4 @@
-package com.gauravk.bubblebarsample.DB.Userdata.user;
+package com.gauravk.bubblebarsample.DB.Userdata;
 
 import com.gauravk.bubblebarsample.DB.Userdata.user.dataall;
 import com.gauravk.bubblebarsample.DB.Userdata.user.post_response;
