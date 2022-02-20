@@ -1,4 +1,4 @@
-package com.gauravk.bubblebarsample.DB.Userdata;
+package com.gauravk.bubblebarsample.DB.Userdata.user;
 
 import com.gauravk.bubblebarsample.DB.Userdata.user.dataall;
 import com.gauravk.bubblebarsample.DB.Userdata.user.post_response;
@@ -89,5 +89,4 @@ public interface RetrofitAPI {
      */
 
 }
-
 
