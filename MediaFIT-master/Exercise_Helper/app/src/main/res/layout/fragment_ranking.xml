@@ -1,10 +1,1086 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="good"></TextView>
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity ="center"
+        android:fillViewport="true"
+        android:layout_marginTop="0dp"
+        android:id="@+id/scrollView">
+        <LinearLayout
+            android:orientation="vertical"
+            android:id="@+id/layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+
+
+            <LinearLayout
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1."
+                    android:textSize="35sp"/>
+
+                <ImageView
+                    android:id="@+id/fic1"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/icon"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/nickname1"
+                        android:layout_width="300dp"
+                        android:layout_height="match_parent"
+                        android:text="nodata"/>
+                    <TextView
+                        android:id="@+id/score1"
+                        android:layout_width="300dp"
+                        android:layout_height="match_parent"
+                        android:text="noscore"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2."
+                    android:textSize="35sp"/>
+
+                <ImageView
+                    android:id="@+id/fic2"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/icon"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/nickname2"
+                        android:layout_width="300dp"
+                        android:layout_height="match_parent"
+                        android:text="nodata"/>
+                    <TextView
+                        android:id="@+id/score2"
+                        android:layout_width="300dp"
+                        android:layout_height="match_parent"
+                        android:text="noscore"/>
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="3."
+                    android:textSize="35sp"/>
+
+                <ImageView
+                    android:id="@+id/fic3"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/icon"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/nickname3"
+                        android:layout_width="300dp"
+                        android:layout_height="match_parent"
+                        android:text="nodata"/>
+                    <TextView
+                        android:id="@+id/score3"
+                        android:layout_width="300dp"
+                        android:layout_height="match_parent"
+                        android:text="noscore"/>
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="4."
+                    android:textSize="35sp"/>
+
+                <ImageView
+                    android:id="@+id/fic4"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/icon"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/nickname4"
+                        android:layout_width="300dp"
+                        android:layout_height="match_parent"
+                        android:text="nodata"/>
+                    <TextView
+                        android:id="@+id/score4"
+                        android:layout_width="300dp"
+                        android:layout_height="match_parent"
+                        android:text="noscore"/>
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="5."
+                    android:textSize="35sp"/>
+
+                <ImageView
+                    android:id="@+id/fic5"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/icon"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/nickname5"
+                        android:layout_width="300dp"
+                        android:layout_height="match_parent"
+                        android:text="nodata"/>
+                    <TextView
+                        android:id="@+id/score5"
+                        android:layout_width="300dp"
+                        android:layout_height="match_parent"
+                        android:text="noscore"/>
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="6."
+                    android:textSize="35sp"/>
+
+                <ImageView
+                    android:id="@+id/fic6"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/icon"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/nickname6"
+                        android:layout_width="300dp"
+                        android:layout_height="match_parent"
+                        android:text="nodata"/>
+                    <TextView
+                        android:id="@+id/score6"
+                        android:layout_width="300dp"
+                        android:layout_height="match_parent"
+                        android:text="noscore"/>
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="7."
+                    android:textSize="35sp"/>
+
+                <ImageView
+                    android:id="@+id/fic7"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/icon"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/nickname7"
+                        android:layout_width="300dp"
+                        android:layout_height="match_parent"
+                        android:text="nodata"/>
+                    <TextView
+                        android:id="@+id/score7"
+                        android:layout_width="300dp"
+                        android:layout_height="match_parent"
+                        android:text="noscore"/>
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="8."
+                    android:textSize="35sp"/>
+
+                <ImageView
+                    android:id="@+id/fic8"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/icon"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/nickname8"
+                        android:layout_width="300dp"
+                        android:layout_height="match_parent"
+                        android:text="nodata"/>
+                    <TextView
+                        android:id="@+id/score8"
+                        android:layout_width="300dp"
+                        android:layout_height="match_parent"
+                        android:text="noscore"/>
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="9."
+                    android:textSize="35sp"/>
+
+                <ImageView
+                    android:id="@+id/fic9"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/icon"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/nickname9"
+                        android:layout_width="300dp"
+                        android:layout_height="match_parent"
+                        android:text="nodata"/>
+                    <TextView
+                        android:id="@+id/score9"
+                        android:layout_width="300dp"
+                        android:layout_height="match_parent"
+                        android:text="noscore"/>
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="10."
+                    android:textSize="35sp"/>
+
+                <ImageView
+                    android:id="@+id/fic10"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/icon"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/nickname10"
+                        android:layout_width="300dp"
+                        android:layout_height="match_parent"
+                        android:text="nodata"/>
+                    <TextView
+                        android:id="@+id/score10"
+                        android:layout_width="300dp"
+                        android:layout_height="match_parent"
+                        android:text="noscore"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="11."
+                    android:textSize="35sp"/>
+
+                <ImageView
+                    android:id="@+id/fic11"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/icon"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/nickname11"
+                        android:layout_width="300dp"
+                        android:layout_height="match_parent"
+                        android:text="nodata"/>
+                    <TextView
+                        android:id="@+id/score11"
+                        android:layout_width="300dp"
+                        android:layout_height="match_parent"
+                        android:text="noscore"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="12."
+                    android:textSize="35sp"/>
+
+                <ImageView
+                    android:id="@+id/fic12"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/icon"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/nickname12"
+                        android:layout_width="300dp"
+                        android:layout_height="match_parent"
+                        android:text="nodata"/>
+                    <TextView
+                        android:id="@+id/score12"
+                        android:layout_width="300dp"
+                        android:layout_height="match_parent"
+                        android:text="noscore"/>
+                </LinearLayout>
+            </LinearLayout>
+<!--            <LinearLayout-->
+<!--                android:layout_marginTop="20dp"-->
+<!--                android:layout_marginLeft="20dp"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="horizontal">-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="1."-->
+<!--                    android:textSize="35sp"/>-->
+
+<!--                <ImageView-->
+<!--                    android:id="@+id/fic1"-->
+<!--                    android:layout_width="50dp"-->
+<!--                    android:layout_height="50dp"-->
+<!--                    android:src="@drawable/icon"/>-->
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="vertical">-->
+<!--                    <TextView-->
+<!--                        android:id="@+id/nickname1"-->
+<!--                        android:layout_width="300dp"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:text="nodata"/>-->
+<!--                    <TextView-->
+<!--                        android:id="@+id/score1"-->
+<!--                        android:layout_width="300dp"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:text="noscore"/>-->
+<!--                </LinearLayout>-->
+<!--            </LinearLayout>-->
+<!--            <LinearLayout-->
+<!--                android:layout_marginTop="20dp"-->
+<!--                android:layout_marginLeft="20dp"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="horizontal">-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="1."-->
+<!--                    android:textSize="35sp"/>-->
+
+<!--                <ImageView-->
+<!--                    android:id="@+id/fic1"-->
+<!--                    android:layout_width="50dp"-->
+<!--                    android:layout_height="50dp"-->
+<!--                    android:src="@drawable/icon"/>-->
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="vertical">-->
+<!--                    <TextView-->
+<!--                        android:id="@+id/nickname1"-->
+<!--                        android:layout_width="300dp"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:text="nodata"/>-->
+<!--                    <TextView-->
+<!--                        android:id="@+id/score1"-->
+<!--                        android:layout_width="300dp"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:text="noscore"/>-->
+<!--                </LinearLayout>-->
+<!--            </LinearLayout>-->
+<!--            <LinearLayout-->
+<!--                android:layout_marginTop="20dp"-->
+<!--                android:layout_marginLeft="20dp"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="horizontal">-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="1."-->
+<!--                    android:textSize="35sp"/>-->
+
+<!--                <ImageView-->
+<!--                    android:id="@+id/fic1"-->
+<!--                    android:layout_width="50dp"-->
+<!--                    android:layout_height="50dp"-->
+<!--                    android:src="@drawable/icon"/>-->
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="vertical">-->
+<!--                    <TextView-->
+<!--                        android:id="@+id/nickname1"-->
+<!--                        android:layout_width="300dp"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:text="nodata"/>-->
+<!--                    <TextView-->
+<!--                        android:id="@+id/score1"-->
+<!--                        android:layout_width="300dp"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:text="noscore"/>-->
+<!--                </LinearLayout>-->
+<!--            </LinearLayout>-->
+<!--            <LinearLayout-->
+<!--                android:layout_marginTop="20dp"-->
+<!--                android:layout_marginLeft="20dp"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="horizontal">-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="1."-->
+<!--                    android:textSize="35sp"/>-->
+
+<!--                <ImageView-->
+<!--                    android:id="@+id/fic1"-->
+<!--                    android:layout_width="50dp"-->
+<!--                    android:layout_height="50dp"-->
+<!--                    android:src="@drawable/icon"/>-->
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="vertical">-->
+<!--                    <TextView-->
+<!--                        android:id="@+id/nickname1"-->
+<!--                        android:layout_width="300dp"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:text="nodata"/>-->
+<!--                    <TextView-->
+<!--                        android:id="@+id/score1"-->
+<!--                        android:layout_width="300dp"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:text="noscore"/>-->
+<!--                </LinearLayout>-->
+<!--            </LinearLayout>-->
+<!--            <LinearLayout-->
+<!--                android:layout_marginTop="20dp"-->
+<!--                android:layout_marginLeft="20dp"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="horizontal">-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="1."-->
+<!--                    android:textSize="35sp"/>-->
+
+<!--                <ImageView-->
+<!--                    android:id="@+id/fic1"-->
+<!--                    android:layout_width="50dp"-->
+<!--                    android:layout_height="50dp"-->
+<!--                    android:src="@drawable/icon"/>-->
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="vertical">-->
+<!--                    <TextView-->
+<!--                        android:id="@+id/nickname1"-->
+<!--                        android:layout_width="300dp"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:text="nodata"/>-->
+<!--                    <TextView-->
+<!--                        android:id="@+id/score1"-->
+<!--                        android:layout_width="300dp"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:text="noscore"/>-->
+<!--                </LinearLayout>-->
+<!--            </LinearLayout>-->
+<!--            <LinearLayout-->
+<!--                android:layout_marginTop="20dp"-->
+<!--                android:layout_marginLeft="20dp"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="horizontal">-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="1."-->
+<!--                    android:textSize="35sp"/>-->
+
+<!--                <ImageView-->
+<!--                    android:id="@+id/fic1"-->
+<!--                    android:layout_width="50dp"-->
+<!--                    android:layout_height="50dp"-->
+<!--                    android:src="@drawable/icon"/>-->
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="vertical">-->
+<!--                    <TextView-->
+<!--                        android:id="@+id/nickname1"-->
+<!--                        android:layout_width="300dp"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:text="nodata"/>-->
+<!--                    <TextView-->
+<!--                        android:id="@+id/score1"-->
+<!--                        android:layout_width="300dp"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:text="noscore"/>-->
+<!--                </LinearLayout>-->
+<!--            </LinearLayout>-->
+<!--            <LinearLayout-->
+<!--                android:layout_marginTop="20dp"-->
+<!--                android:layout_marginLeft="20dp"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="horizontal">-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="1."-->
+<!--                    android:textSize="35sp"/>-->
+
+<!--                <ImageView-->
+<!--                    android:id="@+id/fic1"-->
+<!--                    android:layout_width="50dp"-->
+<!--                    android:layout_height="50dp"-->
+<!--                    android:src="@drawable/icon"/>-->
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="vertical">-->
+<!--                    <TextView-->
+<!--                        android:id="@+id/nickname1"-->
+<!--                        android:layout_width="300dp"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:text="nodata"/>-->
+<!--                    <TextView-->
+<!--                        android:id="@+id/score1"-->
+<!--                        android:layout_width="300dp"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:text="noscore"/>-->
+<!--                </LinearLayout>-->
+<!--            </LinearLayout>-->
+<!--            <LinearLayout-->
+<!--                android:layout_marginTop="20dp"-->
+<!--                android:layout_marginLeft="20dp"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="horizontal">-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="1."-->
+<!--                    android:textSize="35sp"/>-->
+
+<!--                <ImageView-->
+<!--                    android:id="@+id/fic1"-->
+<!--                    android:layout_width="50dp"-->
+<!--                    android:layout_height="50dp"-->
+<!--                    android:src="@drawable/icon"/>-->
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="vertical">-->
+<!--                    <TextView-->
+<!--                        android:id="@+id/nickname1"-->
+<!--                        android:layout_width="300dp"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:text="nodata"/>-->
+<!--                    <TextView-->
+<!--                        android:id="@+id/score1"-->
+<!--                        android:layout_width="300dp"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:text="noscore"/>-->
+<!--                </LinearLayout>-->
+<!--            </LinearLayout>-->
+<!--            <LinearLayout-->
+<!--                android:layout_marginTop="20dp"-->
+<!--                android:layout_marginLeft="20dp"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="horizontal">-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="1."-->
+<!--                    android:textSize="35sp"/>-->
+
+<!--                <ImageView-->
+<!--                    android:id="@+id/fic1"-->
+<!--                    android:layout_width="50dp"-->
+<!--                    android:layout_height="50dp"-->
+<!--                    android:src="@drawable/icon"/>-->
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="vertical">-->
+<!--                    <TextView-->
+<!--                        android:id="@+id/nickname1"-->
+<!--                        android:layout_width="300dp"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:text="nodata"/>-->
+<!--                    <TextView-->
+<!--                        android:id="@+id/score1"-->
+<!--                        android:layout_width="300dp"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:text="noscore"/>-->
+<!--                </LinearLayout>-->
+<!--            </LinearLayout>-->
+
+<!--            <LinearLayout-->
+<!--                android:layout_marginTop="20dp"-->
+<!--                android:layout_marginLeft="20dp"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="horizontal">-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="1."-->
+<!--                    android:textSize="35sp"/>-->
+
+<!--                <ImageView-->
+<!--                    android:id="@+id/fic1"-->
+<!--                    android:layout_width="50dp"-->
+<!--                    android:layout_height="50dp"-->
+<!--                    android:src="@drawable/icon"/>-->
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="vertical">-->
+<!--                    <TextView-->
+<!--                        android:id="@+id/nickname1"-->
+<!--                        android:layout_width="300dp"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:text="nodata"/>-->
+<!--                    <TextView-->
+<!--                        android:id="@+id/score1"-->
+<!--                        android:layout_width="300dp"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:text="noscore"/>-->
+<!--                </LinearLayout>-->
+<!--            </LinearLayout>-->
+<!--            <LinearLayout-->
+<!--                android:layout_marginTop="20dp"-->
+<!--                android:layout_marginLeft="20dp"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="horizontal">-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="1."-->
+<!--                    android:textSize="35sp"/>-->
+
+<!--                <ImageView-->
+<!--                    android:id="@+id/fic1"-->
+<!--                    android:layout_width="50dp"-->
+<!--                    android:layout_height="50dp"-->
+<!--                    android:src="@drawable/icon"/>-->
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="vertical">-->
+<!--                    <TextView-->
+<!--                        android:id="@+id/nickname1"-->
+<!--                        android:layout_width="300dp"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:text="nodata"/>-->
+<!--                    <TextView-->
+<!--                        android:id="@+id/score1"-->
+<!--                        android:layout_width="300dp"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:text="noscore"/>-->
+<!--                </LinearLayout>-->
+<!--            </LinearLayout>-->
+<!--            <LinearLayout-->
+<!--                android:layout_marginTop="20dp"-->
+<!--                android:layout_marginLeft="20dp"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="horizontal">-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="1."-->
+<!--                    android:textSize="35sp"/>-->
+
+<!--                <ImageView-->
+<!--                    android:id="@+id/fic1"-->
+<!--                    android:layout_width="50dp"-->
+<!--                    android:layout_height="50dp"-->
+<!--                    android:src="@drawable/icon"/>-->
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="vertical">-->
+<!--                    <TextView-->
+<!--                        android:id="@+id/nickname1"-->
+<!--                        android:layout_width="300dp"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:text="nodata"/>-->
+<!--                    <TextView-->
+<!--                        android:id="@+id/score1"-->
+<!--                        android:layout_width="300dp"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:text="noscore"/>-->
+<!--                </LinearLayout>-->
+<!--            </LinearLayout>-->
+<!--            <LinearLayout-->
+<!--                android:layout_marginTop="20dp"-->
+<!--                android:layout_marginLeft="20dp"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="horizontal">-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="1."-->
+<!--                    android:textSize="35sp"/>-->
+
+<!--                <ImageView-->
+<!--                    android:id="@+id/fic1"-->
+<!--                    android:layout_width="50dp"-->
+<!--                    android:layout_height="50dp"-->
+<!--                    android:src="@drawable/icon"/>-->
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="vertical">-->
+<!--                    <TextView-->
+<!--                        android:id="@+id/nickname1"-->
+<!--                        android:layout_width="300dp"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:text="nodata"/>-->
+<!--                    <TextView-->
+<!--                        android:id="@+id/score1"-->
+<!--                        android:layout_width="300dp"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:text="noscore"/>-->
+<!--                </LinearLayout>-->
+<!--            </LinearLayout>-->
+<!--            <LinearLayout-->
+<!--                android:layout_marginTop="20dp"-->
+<!--                android:layout_marginLeft="20dp"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="horizontal">-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="1."-->
+<!--                    android:textSize="35sp"/>-->
+
+<!--                <ImageView-->
+<!--                    android:id="@+id/fic1"-->
+<!--                    android:layout_width="50dp"-->
+<!--                    android:layout_height="50dp"-->
+<!--                    android:src="@drawable/icon"/>-->
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="vertical">-->
+<!--                    <TextView-->
+<!--                        android:id="@+id/nickname1"-->
+<!--                        android:layout_width="300dp"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:text="nodata"/>-->
+<!--                    <TextView-->
+<!--                        android:id="@+id/score1"-->
+<!--                        android:layout_width="300dp"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:text="noscore"/>-->
+<!--                </LinearLayout>-->
+<!--            </LinearLayout>-->
+<!--            <LinearLayout-->
+<!--                android:layout_marginTop="20dp"-->
+<!--                android:layout_marginLeft="20dp"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="horizontal">-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="1."-->
+<!--                    android:textSize="35sp"/>-->
+
+<!--                <ImageView-->
+<!--                    android:id="@+id/fic1"-->
+<!--                    android:layout_width="50dp"-->
+<!--                    android:layout_height="50dp"-->
+<!--                    android:src="@drawable/icon"/>-->
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="vertical">-->
+<!--                    <TextView-->
+<!--                        android:id="@+id/nickname1"-->
+<!--                        android:layout_width="300dp"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:text="nodata"/>-->
+<!--                    <TextView-->
+<!--                        android:id="@+id/score1"-->
+<!--                        android:layout_width="300dp"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:text="noscore"/>-->
+<!--                </LinearLayout>-->
+<!--            </LinearLayout>-->
+<!--            <LinearLayout-->
+<!--                android:layout_marginTop="20dp"-->
+<!--                android:layout_marginLeft="20dp"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="horizontal">-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="1."-->
+<!--                    android:textSize="35sp"/>-->
+
+<!--                <ImageView-->
+<!--                    android:id="@+id/fic1"-->
+<!--                    android:layout_width="50dp"-->
+<!--                    android:layout_height="50dp"-->
+<!--                    android:src="@drawable/icon"/>-->
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="vertical">-->
+<!--                    <TextView-->
+<!--                        android:id="@+id/nickname1"-->
+<!--                        android:layout_width="300dp"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:text="nodata"/>-->
+<!--                    <TextView-->
+<!--                        android:id="@+id/score1"-->
+<!--                        android:layout_width="300dp"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:text="noscore"/>-->
+<!--                </LinearLayout>-->
+<!--            </LinearLayout>-->
+<!--            <LinearLayout-->
+<!--                android:layout_marginTop="20dp"-->
+<!--                android:layout_marginLeft="20dp"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="horizontal">-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="1."-->
+<!--                    android:textSize="35sp"/>-->
+
+<!--                <ImageView-->
+<!--                    android:id="@+id/fic1"-->
+<!--                    android:layout_width="50dp"-->
+<!--                    android:layout_height="50dp"-->
+<!--                    android:src="@drawable/icon"/>-->
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="vertical">-->
+<!--                    <TextView-->
+<!--                        android:id="@+id/nickname1"-->
+<!--                        android:layout_width="300dp"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:text="nodata"/>-->
+<!--                    <TextView-->
+<!--                        android:id="@+id/score1"-->
+<!--                        android:layout_width="300dp"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:text="noscore"/>-->
+<!--                </LinearLayout>-->
+<!--            </LinearLayout>-->
+<!--            <LinearLayout-->
+<!--                android:layout_marginTop="20dp"-->
+<!--                android:layout_marginLeft="20dp"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="horizontal">-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="1."-->
+<!--                    android:textSize="35sp"/>-->
+
+<!--                <ImageView-->
+<!--                    android:id="@+id/fic1"-->
+<!--                    android:layout_width="50dp"-->
+<!--                    android:layout_height="50dp"-->
+<!--                    android:src="@drawable/icon"/>-->
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="vertical">-->
+<!--                    <TextView-->
+<!--                        android:id="@+id/nickname1"-->
+<!--                        android:layout_width="300dp"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:text="nodata"/>-->
+<!--                    <TextView-->
+<!--                        android:id="@+id/score1"-->
+<!--                        android:layout_width="300dp"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:text="noscore"/>-->
+<!--                </LinearLayout>-->
+<!--            </LinearLayout>-->
+
+
+
+
+
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>
