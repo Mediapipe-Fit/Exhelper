@@ -1,0 +1,21 @@
+{
+  "name": "express_mysql",
+  "version": "1.0.0",
+  "description": "Exercise Helper`s API",
+  "main": "index.js",
+  "scripts": {
+    "server": "nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.2",
+    "fs": "0.0.1-security",
+    "https": "^1.0.0",
+    "mysql": "^2.18.1",
+    "nodeman": "^1.1.2",
+    "nodemon": "^2.0.15"
+  }
+}
