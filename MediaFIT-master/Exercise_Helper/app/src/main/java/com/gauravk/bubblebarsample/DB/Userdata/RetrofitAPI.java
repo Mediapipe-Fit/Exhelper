@@ -3,6 +3,7 @@ package com.gauravk.bubblebarsample.DB.Userdata;
 import com.gauravk.bubblebarsample.DB.Userdata.user.dataall;
 import com.gauravk.bubblebarsample.DB.Userdata.user.post_response;
 import com.gauravk.bubblebarsample.DB.Userdata.user.user;
+import com.gauravk.bubblebarsample.DB.Userdata.user.rank;
 
 import java.util.HashMap;
 
@@ -16,6 +17,9 @@ import retrofit2.http.POST;
 
 public interface RetrofitAPI {
 
+
+    @GET("user")
+    Call<rank> get_rank_data();
 
     @GET("user")
     Call<dataall> get_All_data();
