@@ -6,7 +6,6 @@ public class rank {
     @SerializedName("data")
     private user1[] data;
 
-
     public user1[] getData() {
         return data;
     }

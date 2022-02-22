@@ -3,36 +3,23 @@ package com.gauravk.bubblebarsample.DB.Userdata.user;
 import com.google.gson.annotations.SerializedName;
 
 public class user1 {
-        private String score;
-
-        private String sex;
+        private int score;
 
         private String profile;
 
         private String name;
 
-        private String email;
+        private int ranikng;
 
-        private String age;
 
-        public String getScore ()
+        public int getScore ()
         {
             return score;
         }
 
-        public void setScore (String score)
+        public void setScore (int score)
         {
             this.score = score;
-        }
-
-        public String getSex ()
-        {
-            return sex;
-        }
-
-        public void setSex (String sex)
-        {
-            this.sex = sex;
         }
 
         public String getProfile ()
@@ -55,29 +42,14 @@ public class user1 {
             this.name = name;
         }
 
-        public String getEmail ()
-        {
-            return email;
-        }
+        public int getRanikng () { return ranikng; }
 
-        public void setEmail (String email)
-        {
-            this.email = email;
-        }
+        public void setRanikng (int ranikng) { this.ranikng = ranikng; }
 
-        public String getAge ()
-        {
-            return age;
-        }
-
-        public void setAge (String age)
-        {
-            this.age = age;
-        }
 
         @Override
         public String toString()
         {
-            return "ClassPojo [score = "+score+", sex = "+sex+", profile = "+profile+", name = "+name+", email = "+email+", age = "+age+"]";
+            return "ClassPojo [score = "+score+", profile = "+profile+", name = "+name+", ranking = "+ranikng+"]";
         }
 }

@@ -5,7 +5,54 @@
     android:gravity="center"
     android:orientation="vertical">
 
+
+
+    <LinearLayout
+        android:background="@drawable/four_border"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_marginLeft="20dp"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1."
+            android:textSize="50sp" />
+        <ImageView
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_gravity="center"
+            android:id="@+id/myfic"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/icon"/>
+
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <TextView
+                android:layout_gravity="center"
+                android:textSize="50sp"
+                android:id="@+id/mynickname"
+                android:text="@string/nodata"
+                android:layout_width="match_parent"
+                android:layout_height="75dp"/>
+            <TextView
+
+                android:textSize="50sp"
+                android:text="@string/noscore"
+                android:id="@+id/myscore"
+                android:layout_width="match_parent"
+                android:layout_height="75dp"/>
+        </LinearLayout>
+
+    </LinearLayout>
     <ScrollView
+        android:background="@drawable/four_border"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -36,7 +83,9 @@
                     android:textSize="35sp"/>
 
                 <ImageView
-                    android:id="@+id/fic1"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:id="@+id/fic01"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:src="@drawable/icon"/>
@@ -46,15 +95,15 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
                     <TextView
-                        android:id="@+id/nickname1"
+                        android:id="@+id/nickname01"
                         android:layout_width="300dp"
                         android:layout_height="match_parent"
-                        android:text="nodata"/>
+                        android:text="@string/nodata"/>
                     <TextView
-                        android:id="@+id/score1"
+                        android:id="@+id/score01"
                         android:layout_width="300dp"
                         android:layout_height="match_parent"
-                        android:text="noscore"/>
+                        android:text="@string/noscore"/>
                 </LinearLayout>
             </LinearLayout>
 
@@ -72,7 +121,9 @@
                     android:textSize="35sp"/>
 
                 <ImageView
-                    android:id="@+id/fic2"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:id="@+id/fic02"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:src="@drawable/icon"/>
@@ -82,12 +133,12 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
                     <TextView
-                        android:id="@+id/nickname2"
+                        android:id="@+id/nickname02"
                         android:layout_width="300dp"
                         android:layout_height="match_parent"
-                        android:text="nodata"/>
+                        android:text="@string/nodata"/>
                     <TextView
-                        android:id="@+id/score2"
+                        android:id="@+id/score02"
                         android:layout_width="300dp"
                         android:layout_height="match_parent"
                         android:text="noscore"/>
@@ -107,7 +158,9 @@
                     android:textSize="35sp"/>
 
                 <ImageView
-                    android:id="@+id/fic3"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:id="@+id/fic03"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:src="@drawable/icon"/>
@@ -117,12 +170,12 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
                     <TextView
-                        android:id="@+id/nickname3"
+                        android:id="@+id/nickname03"
                         android:layout_width="300dp"
                         android:layout_height="match_parent"
                         android:text="nodata"/>
                     <TextView
-                        android:id="@+id/score3"
+                        android:id="@+id/score03"
                         android:layout_width="300dp"
                         android:layout_height="match_parent"
                         android:text="noscore"/>
@@ -142,7 +195,9 @@
                     android:textSize="35sp"/>
 
                 <ImageView
-                    android:id="@+id/fic4"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:id="@+id/fic04"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:src="@drawable/icon"/>
@@ -152,12 +207,12 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
                     <TextView
-                        android:id="@+id/nickname4"
+                        android:id="@+id/nickname04"
                         android:layout_width="300dp"
                         android:layout_height="match_parent"
                         android:text="nodata"/>
                     <TextView
-                        android:id="@+id/score4"
+                        android:id="@+id/score04"
                         android:layout_width="300dp"
                         android:layout_height="match_parent"
                         android:text="noscore"/>
@@ -177,7 +232,9 @@
                     android:textSize="35sp"/>
 
                 <ImageView
-                    android:id="@+id/fic5"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:id="@+id/fic05"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:src="@drawable/icon"/>
@@ -187,12 +244,12 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
                     <TextView
-                        android:id="@+id/nickname5"
+                        android:id="@+id/nickname05"
                         android:layout_width="300dp"
                         android:layout_height="match_parent"
                         android:text="nodata"/>
                     <TextView
-                        android:id="@+id/score5"
+                        android:id="@+id/score05"
                         android:layout_width="300dp"
                         android:layout_height="match_parent"
                         android:text="noscore"/>
@@ -212,7 +269,9 @@
                     android:textSize="35sp"/>
 
                 <ImageView
-                    android:id="@+id/fic6"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:id="@+id/fic06"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:src="@drawable/icon"/>
@@ -222,12 +281,12 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
                     <TextView
-                        android:id="@+id/nickname6"
+                        android:id="@+id/nickname06"
                         android:layout_width="300dp"
                         android:layout_height="match_parent"
                         android:text="nodata"/>
                     <TextView
-                        android:id="@+id/score6"
+                        android:id="@+id/score06"
                         android:layout_width="300dp"
                         android:layout_height="match_parent"
                         android:text="noscore"/>
@@ -247,7 +306,9 @@
                     android:textSize="35sp"/>
 
                 <ImageView
-                    android:id="@+id/fic7"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:id="@+id/fic07"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:src="@drawable/icon"/>
@@ -257,12 +318,12 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
                     <TextView
-                        android:id="@+id/nickname7"
+                        android:id="@+id/nickname07"
                         android:layout_width="300dp"
                         android:layout_height="match_parent"
                         android:text="nodata"/>
                     <TextView
-                        android:id="@+id/score7"
+                        android:id="@+id/score07"
                         android:layout_width="300dp"
                         android:layout_height="match_parent"
                         android:text="noscore"/>
@@ -282,7 +343,9 @@
                     android:textSize="35sp"/>
 
                 <ImageView
-                    android:id="@+id/fic8"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:id="@+id/fic08"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:src="@drawable/icon"/>
@@ -292,12 +355,12 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
                     <TextView
-                        android:id="@+id/nickname8"
+                        android:id="@+id/nickname08"
                         android:layout_width="300dp"
                         android:layout_height="match_parent"
                         android:text="nodata"/>
                     <TextView
-                        android:id="@+id/score8"
+                        android:id="@+id/score08"
                         android:layout_width="300dp"
                         android:layout_height="match_parent"
                         android:text="noscore"/>
@@ -317,7 +380,9 @@
                     android:textSize="35sp"/>
 
                 <ImageView
-                    android:id="@+id/fic9"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:id="@+id/fic09"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:src="@drawable/icon"/>
@@ -327,12 +392,12 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
                     <TextView
-                        android:id="@+id/nickname9"
+                        android:id="@+id/nickname09"
                         android:layout_width="300dp"
                         android:layout_height="match_parent"
                         android:text="nodata"/>
                     <TextView
-                        android:id="@+id/score9"
+                        android:id="@+id/score09"
                         android:layout_width="300dp"
                         android:layout_height="match_parent"
                         android:text="noscore"/>
@@ -352,6 +417,8 @@
                     android:textSize="35sp"/>
 
                 <ImageView
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
                     android:id="@+id/fic10"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
@@ -388,6 +455,8 @@
                     android:textSize="35sp"/>
 
                 <ImageView
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
                     android:id="@+id/fic11"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
@@ -424,6 +493,8 @@
                     android:textSize="35sp"/>
 
                 <ImageView
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
                     android:id="@+id/fic12"
                     android:layout_width="50dp"
                     android:layout_height="50dp"

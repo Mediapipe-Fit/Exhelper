@@ -5,8 +5,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.gauravk.bubblebarsample.DB.Userdata.RetrofitAPI;
+import androidx.appcompat.app.AppCompatActivity;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -22,8 +27,16 @@ import com.gauravk.bubblebarsample.DB.Userdata.user.user1;
 import com.gauravk.bubblebarsample.DB.Userdata.user.dataall;
 import com.gauravk.bubblebarsample.DB.Userdata.user.rank;
 import com.gauravk.bubblebarsample.R;
+import com.gauravk.bubblebarsample.cfg.MyGlobal;
 
-public class RankingFragment extends Fragment {
+import org.w3c.dom.Text;
+
+public class RankingFragment extends Fragment{
+
+    private TextView scoretext;
+    private TextView nicknametext;
+    private ImageView profiletext;
+
     public static RankingFragment newInstance() {
         RankingFragment fragment = new RankingFragment();
         return fragment;
@@ -58,7 +71,26 @@ public class RankingFragment extends Fragment {
                     rank datalist = response.body();
                     user1 temp = datalist.getData()[0];
 
-                    Log.d("GOOOOD", temp.getEmail());
+
+
+                    Log.d("GOOOOD", temp.getProfile());
+                    int count = -1;
+                    for (user1 obj : datalist.getData()){
+                        count ++;
+                        if (MyGlobal.getInstance().getProfile().equals(obj.getProfile())){
+                            TextView mynickname = getView().findViewById(R.id.mynickname);
+                            TextView myscore = getView().findViewById(R.id.myscore);
+                            mynickname.setText(MyGlobal.getInstance().getNickname());
+                            myscore.setText(obj.getScore());
+                        }
+                        profiletext = getView().findViewById(R.id.fic01);
+                        Glide.with(profiletext).load(obj.getProfile()).circleCrop().into(profiletext);
+
+                        scoretext = getView().findViewById(R.id.score01 + count);
+                        scoretext.setText("점수: " + obj.getScore());
+                        nicknametext = getView().findViewById(R.id.nickname01 + count);
+                        nicknametext.setText("닉네임: " + obj.getName());
+                    }
                 }
             }
             @Override
