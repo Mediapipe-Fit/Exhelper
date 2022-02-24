@@ -64,16 +64,11 @@ public class RankingFragment extends Fragment{
 
         RetrofitAPI retrofitAPI = retrofit.create(RetrofitAPI.class);
 
-        retrofitAPI.get_rank_data().enqueue(new Callback<rank>(){
+        retrofitAPI.get_rank_data(MyGlobal.getInstance().getEmail()).enqueue(new Callback<rank>(){
             @Override
             public void onResponse(@NonNull Call<rank> call, @NonNull Response<rank> response){
                 if(response.isSuccessful()) {
                     rank datalist = response.body();
-                    user1 temp = datalist.getData()[0];
-
-
-
-                    Log.d("GOOOOD", temp.getProfile());
                     int count = -1;
                     for (user1 obj : datalist.getData()){
                         count ++;
