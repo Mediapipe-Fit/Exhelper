@@ -1,5 +1,6 @@
 package com.gauravk.bubblebarsample.fragment;
 
+import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -73,12 +74,16 @@ public class RankingFragment extends Fragment{
                     for (user1 obj : datalist.getData()){
                         count ++;
                         if (MyGlobal.getInstance().getProfile().equals(obj.getProfile())){
+                            TextView myrank = getView().findViewById(R.id.myRank);
                             TextView mynickname = getView().findViewById(R.id.mynickname);
                             TextView myscore = getView().findViewById(R.id.myscore);
-                            mynickname.setText(MyGlobal.getInstance().getNickname());
-                            myscore.setText(obj.getScore());
+                            ImageView myImage = getView().findViewById(R.id.myfic);
+                            myrank.setText(obj.getRanking() + ".");
+                            mynickname.setText("닉네임: " + MyGlobal.getInstance().getNickname());
+                            myscore.setText("점수: " + obj.getScore());
+                            Glide.with(myImage).load(obj.getProfile()).circleCrop().into(myImage);
                         }
-                        profiletext = getView().findViewById(R.id.fic01);
+                        profiletext = getView().findViewById(R.id.fic01 + count);
                         Glide.with(profiletext).load(obj.getProfile()).circleCrop().into(profiletext);
 
                         scoretext = getView().findViewById(R.id.score01 + count);

@@ -22,7 +22,7 @@ public interface RetrofitAPI {
     String email = MyGlobal.getInstance().getEmail();
     String Link = email + "/" + email;
 
-    @GET("user/{nickname}")
+    @GET("rank/{nickname}")
     Call<rank> get_rank_data(@Path("nickname") String nickname);
 
     @GET("user")

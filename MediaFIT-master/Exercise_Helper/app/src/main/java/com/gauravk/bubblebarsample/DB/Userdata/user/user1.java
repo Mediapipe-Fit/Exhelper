@@ -9,7 +9,7 @@ public class user1 {
 
         private String name;
 
-        private int ranikng;
+        private int ranking;
 
 
         public int getScore ()
@@ -42,14 +42,14 @@ public class user1 {
             this.name = name;
         }
 
-        public int getRanikng () { return ranikng; }
+        public int getRanking () { return ranking; }
 
-        public void setRanikng (int ranikng) { this.ranikng = ranikng; }
+        public void setRanking (int ranking) { this.ranking = ranking; }
 
 
         @Override
         public String toString()
         {
-            return "ClassPojo [score = "+score+", profile = "+profile+", name = "+name+", ranking = "+ranikng+"]";
+            return "ClassPojo [score = "+score+", profile = "+profile+", name = "+name+", ranking = "+ranking+"]";
         }
 }
