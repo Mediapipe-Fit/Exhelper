@@ -141,6 +141,11 @@ dependencies {
     implementation "com.kakao.sdk:v2-link:2.8.5" // 메시지(카카오링크)
     implementation "com.kakao.sdk:v2-navi:2.8.5" // 카카오내비
 
+
+    //material calendar
+    implementation "com.github.prolificinteractive:material-calendarview:2.0.1"
+    implementation "com.jakewharton.threetenabp:threetenabp:1.2.0"
+
 }
 configurations {
     // Resolves dependency conflict caused by some dependencies use
