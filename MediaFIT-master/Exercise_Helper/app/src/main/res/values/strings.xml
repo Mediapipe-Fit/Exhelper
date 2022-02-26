@@ -188,4 +188,6 @@
     <string name="roboto_medium">sans-serif-medium</string>
 
     <string name="number_picker_formatter">%02d</string>
+    <string name="nodata">nodata</string>
+    <string name="noscore">noscore</string>
 </resources>

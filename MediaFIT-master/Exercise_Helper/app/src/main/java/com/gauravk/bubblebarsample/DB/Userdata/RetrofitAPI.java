@@ -3,6 +3,8 @@ package com.gauravk.bubblebarsample.DB.Userdata;
 import com.gauravk.bubblebarsample.DB.Userdata.user.dataall;
 import com.gauravk.bubblebarsample.DB.Userdata.user.post_response;
 import com.gauravk.bubblebarsample.DB.Userdata.user.user;
+import com.gauravk.bubblebarsample.DB.Userdata.user.rank;
+import com.gauravk.bubblebarsample.cfg.MyGlobal;
 
 import java.util.HashMap;
 
@@ -13,9 +15,15 @@ import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 
 public interface RetrofitAPI {
 
+    String email = MyGlobal.getInstance().getEmail();
+    String Link = email + "/" + email;
+
+    @GET("rank/{nickname}")
+    Call<rank> get_rank_data(@Path("nickname") String nickname);
 
     @GET("user")
     Call<dataall> get_All_data();
@@ -89,5 +97,4 @@ public interface RetrofitAPI {
      */
 
 }
-
 

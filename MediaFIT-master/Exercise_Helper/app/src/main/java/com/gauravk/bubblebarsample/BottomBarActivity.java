@@ -14,14 +14,17 @@ import com.gauravk.bubblebarsample.DB.CreateRoutine.Routine;
 import com.gauravk.bubblebarsample.adapters.ScreenSlidePagerAdapter;
 import com.gauravk.bubblebarsample.fragment.CalendarFragment;
 import com.gauravk.bubblebarsample.fragment.ExerciseFragment;
-import com.gauravk.bubblebarsample.fragment.GuideFragment;
 import com.gauravk.bubblebarsample.fragment.HomeFragment;
 import com.gauravk.bubblebarsample.fragment.RoutineFragment;
+import com.gauravk.bubblebarsample.fragment.RankingFragment;
 import com.gauravk.bubblenavigation.BubbleNavigationLinearView;
 import com.gauravk.bubblenavigation.listener.BubbleNavigationChangeListener;
 
 import java.util.ArrayList;
 import java.util.List;
+
+
+
 
 public class BottomBarActivity extends AppCompatActivity {
 
@@ -42,7 +45,7 @@ public class BottomBarActivity extends AppCompatActivity {
         fragList.add(CalendarFragment.newInstance());
         fragList.add(RoutineFragment.newInstance());
         fragList.add(ExerciseFragment.newInstance());
-        fragList.add(GuideFragment.newInstance());
+        fragList.add(RankingFragment.newInstance());
         ScreenSlidePagerAdapter pagerAdapter = new ScreenSlidePagerAdapter(fragList, getSupportFragmentManager());
 
         final BubbleNavigationLinearView bubbleNavigationLinearView = findViewById(R.id.bottom_navigation_view_linear);
