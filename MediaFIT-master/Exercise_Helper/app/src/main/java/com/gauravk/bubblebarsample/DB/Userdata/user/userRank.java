@@ -2,7 +2,7 @@ package com.gauravk.bubblebarsample.DB.Userdata.user;
 
 import com.google.gson.annotations.SerializedName;
 
-public class user1 {
+public class userRank {
         private int score;
 
         private String profile;
