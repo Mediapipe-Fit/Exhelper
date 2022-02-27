@@ -29,11 +29,11 @@ public class CalendarFragment extends Fragment{
     EventDecorator dotDecoratorRed;
 
     void SetCalendar(){
-        HashSet<CalendarDay> datesBlue = new HashSet<>();
+        HashSet<CalendarDay> datesYellow = new HashSet<>();
         HashSet<CalendarDay> datesRED = new HashSet<>();
         HashSet<CalendarDay> datesGreen = new HashSet<>();
-        datesBlue.add(CalendarDay.today());
-        datesBlue.add(CalendarDay.from(2021, 10, 15));
+        datesYellow.add(CalendarDay.today());
+        datesYellow.add(CalendarDay.from(2021, 10, 15));
         datesRED.add(CalendarDay.from(2022, 2, 10));
         datesRED.add(CalendarDay.from(2022, 2, 7));
         datesGreen.add(CalendarDay.from(2022, 2, 3));
@@ -61,9 +61,9 @@ public class CalendarFragment extends Fragment{
                 Toast.makeText(getActivity(), today, Toast.LENGTH_SHORT).show();
             }
         });
-        dotDecoratorBlue = new EventDecorator(CalendarFragment.this, Color.parseColor("#0000FF"), datesBlue);
+        dotDecoratorBlue = new EventDecorator(CalendarFragment.this, Color.parseColor("#FFEB3B"), datesYellow);
         dotDecoratorRed = new EventDecorator(CalendarFragment.this, Color.parseColor("#FF0000"), datesRED);
-        dotDecoratorGreen = new EventDecorator(CalendarFragment.this, Color.parseColor("#00FF00"), datesGreen);
+        dotDecoratorGreen = new EventDecorator(CalendarFragment.this, Color.parseColor("#4CAF50"), datesGreen);
         calendarView.addDecorator(dotDecoratorBlue);
         calendarView.addDecorator(dotDecoratorRed);
         calendarView.addDecorator(dotDecoratorGreen);
