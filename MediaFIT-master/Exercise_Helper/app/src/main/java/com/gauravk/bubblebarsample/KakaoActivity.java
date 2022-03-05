@@ -84,6 +84,8 @@ public class KakaoActivity extends AppCompatActivity {
         getinButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                updateUserData();
                 Intent intent = new Intent(getApplicationContext(), BottomBarActivity.class);
                 startActivity(intent);
             }
@@ -91,6 +93,30 @@ public class KakaoActivity extends AppCompatActivity {
 
         updateKakaoLoginUi();
     }
+
+
+    private void updateUserData() {
+        UserApiClient.getInstance().me(new Function2<User, Throwable, Unit>() {
+            @Override
+            public Unit invoke(User user, Throwable throwable) {
+                MyGlobal.getInstance().setGender(user.getKakaoAccount().getGender().toString());
+                MyGlobal.getInstance().setAge_range(user.getKakaoAccount().getAgeRange().toString());
+                MyGlobal.getInstance().setBirthday(user.getKakaoAccount().getBirthday());
+                MyGlobal.getInstance().setEmail(user.getKakaoAccount().getEmail());
+                MyGlobal.getInstance().setNickname(user.getKakaoAccount().getProfile().getNickname());
+                MyGlobal.getInstance().setProfile(user.getKakaoAccount().getProfile().getThumbnailImageUrl());
+
+                Log.v("gender업데이트", MyGlobal.getInstance().getGender());
+                Log.v("age_range업데이트", user.getKakaoAccount().getAgeRange().toString());
+                Log.v("birthday업데이트", user.getKakaoAccount().getBirthday());
+                Log.v("email업데이트", user.getKakaoAccount().getEmail());
+                Log.v("profile업데이트", user.getKakaoAccount().getProfile().getThumbnailImageUrl());
+                Log.v("nickname업데이트", user.getKakaoAccount().getProfile().getNickname());
+                return null;
+            }
+        });
+    }
+
 
     private void updateKakaoLoginUi() {
         UserApiClient.getInstance().me(new Function2<User, Throwable, Unit>() {

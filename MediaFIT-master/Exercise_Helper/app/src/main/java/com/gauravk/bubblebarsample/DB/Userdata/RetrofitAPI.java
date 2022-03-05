@@ -19,14 +19,10 @@ import retrofit2.http.Path;
 
 public interface RetrofitAPI {
 
-    String email = MyGlobal.getInstance().getEmail();
-    String Link = email + "/" + email;
-
     @GET("rank/{nickname}")
     Call<rank> get_rank_data(@Path("nickname") String nickname);
 
-    @GET("user")
-    Call<dataall> get_All_data();
+
     /*
     //유저 목록 가져오는 함수
     retrofitAPI.get_All_data().enqueue(new Callback<dataall>(){
@@ -34,36 +30,16 @@ public interface RetrofitAPI {
         public void onResponse(@NonNull Call<dataall> call, @NonNull Response<dataall> response){
             if(response.isSuccessful()) {
                 dataall datalist = response.body();
-                for(user temp: datalist.getData()){
-                    data.add(temp.getEmail());
-                }
-                adapter.notifyDataSetChanged();
-                Log.d("TEST", "성공성공)");
+                Log.d("TEST", "GOOD)");
             }
         }
         @Override
         public void onFailure(Call<dataall> call, Throwable t){
-            Log.d("TEST" , "실패실패");
+            Log.d("TEST" , "NOT GOOD");
             t.printStackTrace();
         }
     });
     */
-
-    //사용불가
-    @FormUrlEncoded
-    @POST("/user")
-    Call<user> postData(
-            @Field("Email") String email,
-            @Field("name") String name,
-            @Field("sex") int sex,
-            @Field("age") String age,
-            @Field("Score") int score
-    );
-
-    @FormUrlEncoded
-    @POST("/user")
-    Call<user> Datapost(@FieldMap HashMap<String,Object> param);
-
 
     @POST("/user")
     Call<post_response> dp(@Body user user);
@@ -84,10 +60,10 @@ public interface RetrofitAPI {
             public void onResponse(Call<post_response> call, Response<post_response> response){
      //           Log.d("test",response.message());
                 if(response.isSuccessful()){
-                    Log.d("test","섹스!");
+                    Log.d("test","GOOD!");
                 }
                 else{
-                    Log.d("test","ㅈㅈ");
+                    Log.d("test","NOT GOOD");
                 }
             }
             public void onFailure(Call<post_response> call, Throwable t){
