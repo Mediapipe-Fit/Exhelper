@@ -10,10 +10,11 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
+import com.gauravk.bubblebarsample.cfg.MyGlobal;
+import com.gauravk.bubblebarsample.cfg.userConfig;
 import com.kakao.sdk.auth.model.OAuthToken;
 import com.kakao.sdk.user.UserApiClient;
 import com.kakao.sdk.user.model.User;
-import com.gauravk.bubblebarsample.cfg.MyGlobal;
 
 
 import kotlin.Unit;
@@ -86,6 +87,7 @@ public class KakaoActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 updateUserData();
+                MyGlobal.Robject.CreateAndUpdateUser(); // API 통신
                 Intent intent = new Intent(getApplicationContext(), BottomBarActivity.class);
                 startActivity(intent);
             }
@@ -99,14 +101,14 @@ public class KakaoActivity extends AppCompatActivity {
         UserApiClient.getInstance().me(new Function2<User, Throwable, Unit>() {
             @Override
             public Unit invoke(User user, Throwable throwable) {
-                MyGlobal.getInstance().setGender(user.getKakaoAccount().getGender().toString());
-                MyGlobal.getInstance().setAge_range(user.getKakaoAccount().getAgeRange().toString());
-                MyGlobal.getInstance().setBirthday(user.getKakaoAccount().getBirthday());
-                MyGlobal.getInstance().setEmail(user.getKakaoAccount().getEmail());
-                MyGlobal.getInstance().setNickname(user.getKakaoAccount().getProfile().getNickname());
-                MyGlobal.getInstance().setProfile(user.getKakaoAccount().getProfile().getThumbnailImageUrl());
+                userConfig.getInstance().setGender(user.getKakaoAccount().getGender().toString());
+                userConfig.getInstance().setAge_range(user.getKakaoAccount().getAgeRange().toString());
+                userConfig.getInstance().setBirthday(user.getKakaoAccount().getBirthday());
+                userConfig.getInstance().setEmail(user.getKakaoAccount().getEmail());
+                userConfig.getInstance().setNickname(user.getKakaoAccount().getProfile().getNickname());
+                userConfig.getInstance().setProfile(user.getKakaoAccount().getProfile().getThumbnailImageUrl());
 
-                Log.v("gender업데이트", MyGlobal.getInstance().getGender());
+                Log.v("gender업데이트", String.valueOf(userConfig.getInstance().getGender()));
                 Log.v("age_range업데이트", user.getKakaoAccount().getAgeRange().toString());
                 Log.v("birthday업데이트", user.getKakaoAccount().getBirthday());
                 Log.v("email업데이트", user.getKakaoAccount().getEmail());
@@ -127,12 +129,12 @@ public class KakaoActivity extends AppCompatActivity {
                     nickName.setText(user.getKakaoAccount().getProfile().getNickname());
                     Glide.with(profileImage).load(user.getKakaoAccount().getProfile().getThumbnailImageUrl()).circleCrop().into(profileImage); // 프로필 사진 둥글게 출력하기
 
-                    MyGlobal.getInstance().setGender(user.getKakaoAccount().getGender().toString());
-                    MyGlobal.getInstance().setAge_range(user.getKakaoAccount().getAgeRange().toString());
-                    MyGlobal.getInstance().setBirthday(user.getKakaoAccount().getBirthday());
-                    MyGlobal.getInstance().setEmail(user.getKakaoAccount().getEmail());
-                    MyGlobal.getInstance().setNickname(user.getKakaoAccount().getProfile().getNickname());
-                    MyGlobal.getInstance().setProfile(user.getKakaoAccount().getProfile().getThumbnailImageUrl());
+                    userConfig.getInstance().setGender(user.getKakaoAccount().getGender().toString());
+                    userConfig.getInstance().setAge_range(user.getKakaoAccount().getAgeRange().toString());
+                    userConfig.getInstance().setBirthday(user.getKakaoAccount().getBirthday());
+                    userConfig.getInstance().setEmail(user.getKakaoAccount().getEmail());
+                    userConfig.getInstance().setNickname(user.getKakaoAccount().getProfile().getNickname());
+                    userConfig.getInstance().setProfile(user.getKakaoAccount().getProfile().getThumbnailImageUrl());
 
                     Log.v("gender:", user.getKakaoAccount().getGender().toString());
                     Log.v("age_range:", user.getKakaoAccount().getAgeRange().toString());

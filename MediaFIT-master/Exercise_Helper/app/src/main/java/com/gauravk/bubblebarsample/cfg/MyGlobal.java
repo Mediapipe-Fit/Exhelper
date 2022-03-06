@@ -19,6 +19,8 @@ public class MyGlobal {
         }
         return instance;
     }
+    public static RetrofitObject Robject = RetrofitObject.getInstance();
+
     private boolean mode = true;    //운동 실행 모드   true면 루틴모드 false면 각 운동모드
     private Date currentTime = Calendar.getInstance().getTime();
     private SimpleDateFormat weekdayFormat = new SimpleDateFormat("EE", Locale.getDefault());
@@ -45,21 +47,9 @@ public class MyGlobal {
 
     private String[] POSE_CLASSES = {"end"};
 
-    private String nickname;
-    private String profile;
-    private String email;
-    private String gender;
-    private String age_range;
-    private String birthday;
 
 
 
-    public String getEmail() { return this.email; }
-    public String getProfile() { return this.profile; }
-    public String getNickname() { return this.nickname; }
-    public String getGender() { return this.gender; }
-    public String getAge_range() { return this.age_range; }
-    public String getBirthday() { return this.birthday; }
 
     public boolean getmode() {return this.mode;}
     public String getExercise(){
@@ -132,13 +122,6 @@ public class MyGlobal {
     public void setREST(long rest){ this.REST = rest; }
     public void setPOSE_SAMPLE_FILE(String str){this.POSE_SAMPLE_FILE = str;}
     public void setFinish(boolean fin){this.finish = fin;}
-
-    public void setEmail(String email){this.email = email;}
-    public void setGender(String gender){this.gender = gender;}
-    public void setBirthday(String birthday){this.birthday = birthday;}
-    public void setAge_range(String age_range){this.age_range = age_range;}
-    public void setNickname(String nickname){this.nickname = nickname;}
-    public void setProfile(String profile){this.profile = profile;}
 
 
     public static int index = -1;

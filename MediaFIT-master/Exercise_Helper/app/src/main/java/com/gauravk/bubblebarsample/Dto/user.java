@@ -1,4 +1,4 @@
-package com.gauravk.bubblebarsample.DB.Userdata.user;
+package com.gauravk.bubblebarsample.Dto;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -15,11 +15,8 @@ public class user {
     @SerializedName("age")
     private String age;
 
-    @SerializedName("score")
-    private int score;
-
-    //@SerializedName("data")
-    //private List<User> data;
+    @SerializedName("profile")
+    private String profile;
 
     public String getEmail(){
         return email;
@@ -45,11 +42,11 @@ public class user {
     public void setAge(String age){
         this.age = age;
     }
-    public int getScore(){
-        return score;
+    public String getProfile(){
+        return profile;
     }
-    public void setScore(int score){
-        this.score = score;
+    public void setProfile(String profile){
+        this.profile = profile;
     }
     /*
     public List<User> getData(){
@@ -62,7 +59,7 @@ public class user {
     @Override
     public String toString()
     {
-        return "[Score = "+score+", Email = "+email+", sex = "+sex+", name = "+name+", age = "+age+"]";
+        return "[Email = "+email+", sex = "+sex+", name = "+name+", age = "+age+", profile = "+profile+"]";
     }
 
 }
