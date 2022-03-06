@@ -1,18 +1,7 @@
-package com.gauravk.bubblebarsample.DB.Userdata;
-
-import com.gauravk.bubblebarsample.DB.Userdata.user.dataall;
-import com.gauravk.bubblebarsample.DB.Userdata.user.post_response;
-import com.gauravk.bubblebarsample.DB.Userdata.user.user;
-import com.gauravk.bubblebarsample.DB.Userdata.user.rank;
-import com.gauravk.bubblebarsample.cfg.MyGlobal;
-
-import java.util.HashMap;
+package com.gauravk.bubblebarsample.Dto;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
-import retrofit2.http.Field;
-import retrofit2.http.FieldMap;
-import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
@@ -42,7 +31,7 @@ public interface RetrofitAPI {
     */
 
     @POST("/user")
-    Call<post_response> dp(@Body user user);
+    Call<post_response> CreateAndUpdateUser(@Body user user);
     /*
     보내는 함수
     postuser에 다 넣고 보내면 댐
@@ -50,7 +39,7 @@ public interface RetrofitAPI {
     user postuser = new user();
         postuser.setEmail("it is work?");
         postuser.setName("fwadl");
-        postuser.setScore(50);
+        postuser.setProfile(50);
         postuser.setSex(1);
         postuser.setAge("50~60");
 

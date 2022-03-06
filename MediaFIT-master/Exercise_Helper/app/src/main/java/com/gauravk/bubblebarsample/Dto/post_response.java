@@ -1,4 +1,4 @@
-package com.gauravk.bubblebarsample.DB.Userdata.user;
+package com.gauravk.bubblebarsample.Dto;
 
 import com.google.gson.annotations.SerializedName;
 
