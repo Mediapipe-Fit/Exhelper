@@ -1,18 +1,15 @@
 package com.gauravk.bubblebarsample.fragment;
 
-import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.gauravk.bubblebarsample.DB.Userdata.RetrofitAPI;
-import androidx.appcompat.app.AppCompatActivity;
+import com.gauravk.bubblebarsample.Dto.RetrofitAPI;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -24,13 +21,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import com.gauravk.bubblebarsample.DB.Userdata.user.userRank;
-import com.gauravk.bubblebarsample.DB.Userdata.user.dataall;
-import com.gauravk.bubblebarsample.DB.Userdata.user.rank;
+import com.gauravk.bubblebarsample.Dto.userRank;
+import com.gauravk.bubblebarsample.Dto.rank;
 import com.gauravk.bubblebarsample.R;
 import com.gauravk.bubblebarsample.cfg.MyGlobal;
-
-import org.w3c.dom.Text;
+import com.gauravk.bubblebarsample.cfg.userConfig;
 
 public class RankingFragment extends Fragment{
 
@@ -55,8 +50,7 @@ public class RankingFragment extends Fragment{
     @Override
     public void onStart() {
         super.onStart();
-
-
+        Log.d("Ranking", " RankingPage START");
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://www.exhelper.site/")
@@ -64,22 +58,23 @@ public class RankingFragment extends Fragment{
                 .build();
 
         RetrofitAPI retrofitAPI = retrofit.create(RetrofitAPI.class);
-
-        retrofitAPI.get_rank_data(MyGlobal.getInstance().getEmail()).enqueue(new Callback<rank>(){
+        Log.d("Ranking", " Ranking Data 통신 시작");
+        retrofitAPI.get_rank_data(userConfig.getInstance().getEmail()).enqueue(new Callback<rank>(){
             @Override
             public void onResponse(@NonNull Call<rank> call, @NonNull Response<rank> response){
                 if(response.isSuccessful()) {
+                    Log.d("Ranking", " Ranking Data 통신 성공");
                     rank datalist = response.body();
                     int count = -1;
                     for (userRank obj : datalist.getData()){
                         count ++;
-                        if (MyGlobal.getInstance().getProfile().equals(obj.getProfile())){
+                        if (userConfig.getInstance().getProfile().equals(obj.getProfile())){
                             TextView myrank = getView().findViewById(R.id.myRank);
                             TextView mynickname = getView().findViewById(R.id.mynickname);
                             TextView myscore = getView().findViewById(R.id.myscore);
                             ImageView myImage = getView().findViewById(R.id.myfic);
                             myrank.setText(obj.getRanking() + ".");
-                            mynickname.setText("닉네임: " + MyGlobal.getInstance().getNickname());
+                            mynickname.setText("닉네임: " + userConfig.getInstance().getNickname());
                             myscore.setText("점수: " + obj.getScore());
                             Glide.with(myImage).load(obj.getProfile()).circleCrop().into(myImage);
                         }
@@ -95,11 +90,11 @@ public class RankingFragment extends Fragment{
             }
             @Override
             public void onFailure(Call<rank> call, Throwable t){
-                Log.d("TEST" , "실패실패");
+                Log.d("Ranking", " Ranking Data 통신 실패");
                 t.printStackTrace();
             }
         });
-
+        //Log.d("Ranking", " Ranking Data 통신 종료");
     }
 
 }
