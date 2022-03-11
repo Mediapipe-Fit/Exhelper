@@ -14,6 +14,14 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="Mon">월</string>
+    <string name="Tue">화</string>
+    <string name="Wen">수</string>
+    <string name="Thu">목</string>
+    <string name="Fri">금</string>
+    <string name="Sat">토</string>
+    <string name="Sun">일</string>
+
 
     <string name="start_wearable_activity">Start Wearable Activity</string>
     <string name="start">Start</string>
