@@ -32,7 +32,7 @@ public class HomeViewAdapter extends RecyclerView.Adapter<HomeViewHolder> {
 
     @Override
     public HomeViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.routine_item2, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.routine_item_main, parent, false);
         return new HomeViewHolder(view);
     }
 

@@ -1,8 +1,5 @@
 package com.gauravk.bubblebarsample.fragment;
 
-
-import static com.gauravk.bubblebarsample.cfg.MyGlobal.today_hangle;
-
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
@@ -72,10 +69,10 @@ public class RoutineFragment extends Fragment implements RoutineCreateListener{
         super.onStart();
         Logger.addLogAdapter(new AndroidLogAdapter());
         setBtns();
-        Config.selected_weekday = MyGlobal.today_hangle();
+        Config.selected_weekday = Config.today_hangle();
         recyclerView = (RecyclerView) getView().findViewById(R.id.RoutineRecyclerView);
         routineListEmptyTextView = (TextView) getView().findViewById(R.id.emptyRoutineListTextView);
-        Btns.get(MyGlobal.index-1).callOnClick();
+        Btns.get(Config.index-1).callOnClick();
         viewVisibility();
 
         FloatingActionButton fab = (FloatingActionButton) getView().findViewById(R.id.fab);
@@ -96,7 +93,7 @@ public class RoutineFragment extends Fragment implements RoutineCreateListener{
     }
     public void setBtns(){
         Btns = new ArrayList<>();
-        ArrayList<Integer> Weekdays = new ArrayList<>(Arrays.asList(R.id.Sun,R.id.Mon,R.id.Tue,R.id.Wed,R.id.Thu,R.id.Fri,R.id.Sat));
+        ArrayList<Integer> Weekdays = new ArrayList<>(Arrays.asList(R.id.sunday,R.id.monday,R.id.tuesday,R.id.wednesday,R.id.thursday,R.id.friday,R.id.saturday));
         for(int i=0;i<7;++i){
             Button cur = (Button) getView().findViewById(Weekdays.get(i));
             Btns.add(cur);

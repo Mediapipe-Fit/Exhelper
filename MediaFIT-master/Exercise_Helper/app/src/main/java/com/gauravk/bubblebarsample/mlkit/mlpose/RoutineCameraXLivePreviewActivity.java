@@ -16,7 +16,6 @@
 
 package com.gauravk.bubblebarsample.mlkit.mlpose;
 
-import static com.gauravk.bubblebarsample.cfg.MyGlobal.today_hangle;
 
 import android.content.Context;
 import android.content.Intent;
@@ -55,6 +54,7 @@ import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory;
 import com.gauravk.bubblebarsample.DB.CreateRoutine.Routine;
 import com.gauravk.bubblebarsample.DB.QueryClass;
 import com.gauravk.bubblebarsample.R;
+import com.gauravk.bubblebarsample.cfg.Config;
 import com.gauravk.bubblebarsample.cfg.MyGlobal;
 import com.gauravk.bubblebarsample.mlkit.CameraXViewModel;
 import com.gauravk.bubblebarsample.mlkit.GraphicOverlay;
@@ -179,7 +179,7 @@ public final class RoutineCameraXLivePreviewActivity extends AppCompatActivity
     databaseQueryClass = new QueryClass(this);
     routineList = new ArrayList<>();
     currentTime = Calendar.getInstance().getTime();
-    routineList.addAll(databaseQueryClass.getDaysRoutine(today_hangle()));
+    routineList.addAll(databaseQueryClass.getDaysRoutine(Config.today_hangle()));
     MyGlobal.getInstance().initRoutine(routineList);
     if(routineList.isEmpty()){
 

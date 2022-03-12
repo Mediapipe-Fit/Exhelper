@@ -1,7 +1,6 @@
 package com.gauravk.bubblebarsample.fragment;
 
 
-import static com.gauravk.bubblebarsample.cfg.MyGlobal.today_hangle;
 
 import android.app.Activity;
 import android.content.Context;
@@ -30,6 +29,7 @@ import com.gauravk.bubblebarsample.DB.CreateRoutine.Routine;
 import com.gauravk.bubblebarsample.DB.QueryClass;
 import com.gauravk.bubblebarsample.DB.ShowRoutine.HomeViewAdapter;
 import com.gauravk.bubblebarsample.R;
+import com.gauravk.bubblebarsample.cfg.Config;
 import com.gauravk.bubblebarsample.mlkit.mlpose.RoutineCameraXLivePreviewActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -105,7 +105,7 @@ public class HomeFragment extends Fragment
 
         recyclerView = (RecyclerView) getView().findViewById(R.id.home_recycler);
 
-        Days_routineList.addAll(databaseQueryClass.getDaysRoutine(today_hangle()));
+        Days_routineList.addAll(databaseQueryClass.getDaysRoutine(Config.today_hangle()));
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

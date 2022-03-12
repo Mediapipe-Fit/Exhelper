@@ -1,5 +1,7 @@
 package com.gauravk.bubblebarsample.cfg;
 
+import java.util.Calendar;
+
 public class Config {
 
     public static final String DATABASE_NAME = "Routine-db";
@@ -24,4 +26,38 @@ public class Config {
     public static String selected_weekday = "";
     public static long selected_ID = -1;
     public static String Today = "";
+
+    public static int index = -1;
+    public static String today_hangle(){
+        Calendar cal = Calendar.getInstance();
+        index = cal.get(Calendar.DAY_OF_WEEK);
+        String WhatWeek;
+        switch (index){
+            case 1:
+                WhatWeek = "일";
+                break;
+            case 2:
+                WhatWeek = "월";
+                break;
+            case 3:
+                WhatWeek = "화";
+                break;
+            case 4:
+                WhatWeek = "수";
+                break;
+            case 5:
+                WhatWeek = "목";
+                break;
+            case 6:
+                WhatWeek = "금";
+                break;
+            case 7:
+                WhatWeek = "토";
+                break;
+            default:
+                WhatWeek = "이상하다";
+                break;
+        }
+        return WhatWeek;
+    }
 }
