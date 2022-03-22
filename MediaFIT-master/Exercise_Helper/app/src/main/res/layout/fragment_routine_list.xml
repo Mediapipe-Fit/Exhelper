@@ -11,8 +11,8 @@
         android:id="@+id/Title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="80dp"
-        android:paddingRight="80dp"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp"
         tools:ignore="MissingConstraints">
         <TextView
             style="@android:style/Widget.Button"
@@ -55,5 +55,16 @@
         android:layout_marginBottom="16dp"
         android:layout_marginRight="80dp"
         app:srcCompat="@drawable/ic_delete_black_24dp" />
+
+    <TextView
+        android:id = "@+id/date"
+        android:textSize="18sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|end"
+        android:layout_marginBottom="16dp"
+        android:text="2022-03-22">
+
+    </TextView>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

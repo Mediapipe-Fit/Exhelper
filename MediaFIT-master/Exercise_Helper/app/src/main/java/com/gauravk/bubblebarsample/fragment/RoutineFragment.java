@@ -47,6 +47,7 @@ public class RoutineFragment extends Fragment implements RoutineCreateListener{
     private TextView routineListEmptyTextView;
     private RecyclerView recyclerView;
     private RoutineViewAdapter routineListRecyclerViewAdapter;
+    private TextView dateTextView;
     Display display;
 
     private ArrayList<Button> Btns;
@@ -70,8 +71,11 @@ public class RoutineFragment extends Fragment implements RoutineCreateListener{
         Logger.addLogAdapter(new AndroidLogAdapter());
         setBtns();
         Config.selected_weekday = Config.today_hangle();
+        Config.setToday();
+        Config.setWeek();
         recyclerView = (RecyclerView) getView().findViewById(R.id.RoutineRecyclerView);
         routineListEmptyTextView = (TextView) getView().findViewById(R.id.emptyRoutineListTextView);
+        dateTextView = getView().findViewById(R.id.date);
         Btns.get(Config.index-1).callOnClick();
         viewVisibility();
 
@@ -110,6 +114,7 @@ public class RoutineFragment extends Fragment implements RoutineCreateListener{
                     btns.get(finalI).setBackgroundDrawable(ContextCompat.getDrawable(getActivity(),R.drawable.weekday_active));
                     Log.i("Touched", String.valueOf(btns.get(finalI).getText()));
                     Config.selected_weekday = String.valueOf(btns.get(finalI).getText());
+                    dateTextView.setText(Config.weekDate.get(Config.selected_weekday));
                     change_View();
                 }
             });

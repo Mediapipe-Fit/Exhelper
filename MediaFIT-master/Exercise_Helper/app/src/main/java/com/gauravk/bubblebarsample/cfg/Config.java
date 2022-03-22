@@ -1,6 +1,11 @@
 package com.gauravk.bubblebarsample.cfg;
 
+import android.util.Log;
+
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
 
 public class Config {
 
@@ -25,39 +30,37 @@ public class Config {
 
     public static String selected_weekday = "";
     public static long selected_ID = -1;
-    public static String Today = "";
+    public static SimpleDateFormat yyyyMMdd = new SimpleDateFormat("yyyy-MM-dd");
+    public static Calendar calendar = Calendar.getInstance();
+    public static HashMap<String,String> weekDate = new HashMap<>();
+    public static String[] hangleDate = new String[]{"없음","일","월","화","수","목","금","토"};
+
+    public static void setToday(){
+        calendar.setTime(new Date());
+    }
+
+    public static void setWeek(){
+        Calendar tmpcal = calendar;
+        int temp_index = index;
+        int cnt = 0;
+        while(true){
+            if(temp_index == 8){
+                temp_index = 1;
+            }
+            weekDate.put(hangleDate[temp_index],yyyyMMdd.format(tmpcal.getTime()));
+            Log.d("week",weekDate.get(hangleDate[temp_index]));
+            tmpcal.add(Calendar.DATE,1);
+            cnt++;
+            temp_index++;
+            if(cnt == 7) break;
+        }
+    }
+
+
 
     public static int index = -1;
     public static String today_hangle(){
-        Calendar cal = Calendar.getInstance();
-        index = cal.get(Calendar.DAY_OF_WEEK);
-        String WhatWeek;
-        switch (index){
-            case 1:
-                WhatWeek = "일";
-                break;
-            case 2:
-                WhatWeek = "월";
-                break;
-            case 3:
-                WhatWeek = "화";
-                break;
-            case 4:
-                WhatWeek = "수";
-                break;
-            case 5:
-                WhatWeek = "목";
-                break;
-            case 6:
-                WhatWeek = "금";
-                break;
-            case 7:
-                WhatWeek = "토";
-                break;
-            default:
-                WhatWeek = "이상하다";
-                break;
-        }
-        return WhatWeek;
+        index = calendar.get(Calendar.DAY_OF_WEEK);
+        return hangleDate[index];
     }
 }

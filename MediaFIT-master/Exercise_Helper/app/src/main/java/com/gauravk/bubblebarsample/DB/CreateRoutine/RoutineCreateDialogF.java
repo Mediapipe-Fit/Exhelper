@@ -16,8 +16,11 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.DialogFragment;
 
 import com.gauravk.bubblebarsample.DB.QueryClass;
+import com.gauravk.bubblebarsample.Dto.info;
 import com.gauravk.bubblebarsample.R;
 import com.gauravk.bubblebarsample.cfg.Config;
+import com.gauravk.bubblebarsample.cfg.RetrofitObject;
+import com.gauravk.bubblebarsample.cfg.userConfig;
 import com.shawnlin.numberpicker.NumberPicker;
 
 import java.util.Locale;
@@ -41,6 +44,9 @@ public class RoutineCreateDialogF extends DialogFragment {
     private int Rest_time = -1;
     private int Regno = -1;
     private String temp = "";
+    private String exername;
+    private String email;
+    private String date;
 
     private QueryClass DBQueryClass; //DB 소환
 
@@ -83,8 +89,8 @@ public class RoutineCreateDialogF extends DialogFragment {
 
         String title = getArguments().getString(Config.TITLE);
         getDialog().setTitle(title);
-
-        createButton.setOnClickListener(new View.OnClickListener() {
+        /*
+        createButton.setOnClickListener(new View.OnClickListener() { // 내부 DB
             @Override
             public void onClick(View view) {
                 temp = Excercise_name.getSelectedItem().toString();
@@ -109,8 +115,24 @@ public class RoutineCreateDialogF extends DialogFragment {
                 //Log.i("DB_Insert_Routine_in_D", String.format("ID = %d, name = %s, Set_num = %d, Repeat_num = %d, Rest_time = %d", id , Routine.getName() , Routine.getSet_num(), Routine.getRepeat_num(), Routine.getRepeat_num()));
 
             }
-        });
+        });*/
+        createButton.setOnClickListener(new View.OnClickListener() { // 서버 DB
+            @Override
+            public void onClick(View view) {
+                date = Config.weekDate.get(Config.selected_weekday);
+                email = userConfig.getInstance().getEmail();
+                exername = Excercise_name.getSelectedItem().toString();
+                Regno = Integer.parseInt(RegNo.getSelectedItem().toString());
+                Set_num = Set.getValue();
+                Repeat_num = Repeat.getValue();
+                Rest_time = Rest.getValue();
+                info tempInfo = new info(date,email,exername,Regno,Set_num,Repeat_num,Rest_time,0,0);
 
+                //만들때는 0으로
+                RetrofitObject.getInstance().CreateInfo(tempInfo);
+
+            }
+        });
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

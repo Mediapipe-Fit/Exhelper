@@ -3,6 +3,7 @@ package com.gauravk.bubblebarsample.cfg;
 import android.util.Log;
 
 import com.gauravk.bubblebarsample.Dto.RetrofitAPI;
+import com.gauravk.bubblebarsample.Dto.info;
 import com.gauravk.bubblebarsample.Dto.post_response;
 import com.gauravk.bubblebarsample.Dto.user;
 
@@ -46,11 +47,29 @@ public class RetrofitObject {
                     Log.d("User",response.body().getMessage());
                 }
                 else{
-                    Log.d("User","CreateOrUpdate 통신 오류 : " + response.body().getMessage());
+                    Log.d("User","CreateOrUpdate 통신 오류 : " + response.body());
                 }
             }
             public void onFailure(Call<post_response> call, Throwable t){
                 Log.d("User","CreateOrUpdate 통신 실패");
+            }
+        });
+    }
+
+    public void CreateInfo(info curInfo){
+
+        retrofitAPI.CreateInfo(curInfo).enqueue(new Callback<post_response>() {
+            @Override
+            public void onResponse(Call<post_response> call, Response<post_response> response){
+                if(response.isSuccessful()){
+                    Log.d("Info",response.body().getMessage());
+                }
+                else{
+                    Log.d("Info","CreateInfo 통신 오류");
+                }
+            }
+            public void onFailure(Call<post_response> call, Throwable t){
+                Log.d("Info","CreateInfo 통신 실패");
             }
         });
     }

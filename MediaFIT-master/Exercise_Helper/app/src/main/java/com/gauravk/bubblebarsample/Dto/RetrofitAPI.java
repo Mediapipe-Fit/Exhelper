@@ -32,6 +32,9 @@ public interface RetrofitAPI {
 
     @POST("/user")
     Call<post_response> CreateAndUpdateUser(@Body user user);
+
+    @POST("/info")
+    Call<post_response> CreateInfo(@Body info Info);
     /*
     보내는 함수
     postuser에 다 넣고 보내면 댐
