@@ -24,6 +24,7 @@ import androidx.fragment.app.Fragment;
 import com.gauravk.bubblebarsample.Dto.userRank;
 import com.gauravk.bubblebarsample.Dto.rank;
 import com.gauravk.bubblebarsample.R;
+import com.gauravk.bubblebarsample.cfg.Config;
 import com.gauravk.bubblebarsample.cfg.MyGlobal;
 import com.gauravk.bubblebarsample.cfg.userConfig;
 
@@ -38,8 +39,6 @@ public class RankingFragment extends Fragment{
         return fragment;
     }
 
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -53,7 +52,7 @@ public class RankingFragment extends Fragment{
         Log.d("Ranking", " RankingPage START");
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://www.exhelper.site/")
+                .baseUrl(Config.Domain)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 

@@ -9,6 +9,7 @@ import java.util.HashMap;
 
 public class Config {
 
+    public static String Domain = "https://www.exhelper.site/";
     public static final String DATABASE_NAME = "Routine-db";
 
     //column names of Routine table

@@ -25,6 +25,7 @@ public class RetrofitObject {
 
     private Retrofit retrofit = new Retrofit.Builder()
             .baseUrl("https://www.exhelper.site/")
+            .baseUrl(Config.Domain)
             .addConverterFactory(GsonConverterFactory.create())
             .build();
 
