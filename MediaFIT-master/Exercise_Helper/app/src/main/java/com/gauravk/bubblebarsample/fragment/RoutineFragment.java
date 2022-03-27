@@ -8,10 +8,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,15 +18,16 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.gauravk.bubblebarsample.BottomBarActivity;
 import com.gauravk.bubblebarsample.DB.CreateRoutine.Routine;
 import com.gauravk.bubblebarsample.DB.CreateRoutine.RoutineCreateDialogF;
 import com.gauravk.bubblebarsample.DB.CreateRoutine.RoutineCreateListener;
 import com.gauravk.bubblebarsample.DB.QueryClass;
 import com.gauravk.bubblebarsample.DB.ShowRoutine.RoutineViewAdapter;
+import com.gauravk.bubblebarsample.Dto.GetInfoListener;
+import com.gauravk.bubblebarsample.Dto.info;
 import com.gauravk.bubblebarsample.R;
 import com.gauravk.bubblebarsample.cfg.Config;
-import com.gauravk.bubblebarsample.cfg.MyGlobal;
+import com.gauravk.bubblebarsample.cfg.userConfig;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
@@ -38,7 +36,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class RoutineFragment extends Fragment implements RoutineCreateListener{
+public class RoutineFragment extends Fragment implements RoutineCreateListener, GetInfoListener {
 
     private QueryClass databaseQueryClass;
     private TextView Title;
@@ -68,17 +66,15 @@ public class RoutineFragment extends Fragment implements RoutineCreateListener{
     @Override
     public void onStart() {
         super.onStart();
+        userConfig.getInstance().setRoutineInfoListener(this::onGetInfoSuccess);
         Logger.addLogAdapter(new AndroidLogAdapter());
         setBtns();
-        Config.selected_weekday = Config.today_hangle();
-        Config.setToday();
-        Config.setWeek();
         recyclerView = (RecyclerView) getView().findViewById(R.id.RoutineRecyclerView);
         routineListEmptyTextView = (TextView) getView().findViewById(R.id.emptyRoutineListTextView);
         dateTextView = getView().findViewById(R.id.date);
         Btns.get(Config.index-1).callOnClick();
         viewVisibility();
-
+        change_View();
         FloatingActionButton fab = (FloatingActionButton) getView().findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -126,15 +122,8 @@ public class RoutineFragment extends Fragment implements RoutineCreateListener{
             btns.get(finalI).setBackgroundDrawable(ContextCompat.getDrawable(getActivity(),R.drawable.weekday_inactive));
         }
     }
-    public void change_View(){
-        Days_routineList = new ArrayList<Routine>();
-        Days_routineList = databaseQueryClass.getDaysRoutine(Config.selected_weekday);
-        for(int i=0;i<Days_routineList.size();++i){
-            Routine routine = Days_routineList.get(i);
-            Log.i("Holder_routine_Fragment", String.format("ID = %d, Reg_no = %d, name = %s, Set_num = %d, Repeat_num = %d, Rest_time = %d", routine.getId() , routine.getRegNO(), routine.getName() , routine.getSet_num(), routine.getRepeat_num(), routine.getRest_time()));
-
-        }
-        routineListRecyclerViewAdapter = new RoutineViewAdapter(getActivity(), Days_routineList);
+    public void change_View() {
+        routineListRecyclerViewAdapter = new RoutineViewAdapter(getActivity(), userConfig.getInstance().getWeekData().getDateInfo(Config.weekDate.get(Config.selected_weekday)));
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
         recyclerView.setAdapter(routineListRecyclerViewAdapter);
         viewVisibility();
@@ -178,7 +167,8 @@ public class RoutineFragment extends Fragment implements RoutineCreateListener{
     }
 
     public void viewVisibility() {
-        if(Days_routineList.isEmpty())
+        Log.d("test",Config.weekDate.get(Config.selected_weekday));
+        if(userConfig.getInstance().getWeekData().getDateInfo(Config.weekDate.get(Config.selected_weekday)).size() == 0)
             routineListEmptyTextView.setVisibility(View.VISIBLE);
         else
             routineListEmptyTextView.setVisibility(View.GONE);
@@ -190,10 +180,14 @@ public class RoutineFragment extends Fragment implements RoutineCreateListener{
     }
 
     @Override
-    public void onRoutineCreated(Routine routine) {
+    public void onRoutineCreated(info info) {
         routineListRecyclerViewAdapter.notifyDataSetChanged();
         change_View();
-        Logger.d(routine.getName());
+        Logger.d(info.getExername());
     }
 
+    @Override
+    public void onGetInfoSuccess() {
+        change_View();
+    }
 }

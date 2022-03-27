@@ -2,24 +2,15 @@ package com.gauravk.bubblebarsample.fragment;
 
 
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.WorkerThread;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -28,44 +19,19 @@ import com.dinuscxj.progressbar.CircleProgressBar;
 import com.gauravk.bubblebarsample.DB.CreateRoutine.Routine;
 import com.gauravk.bubblebarsample.DB.QueryClass;
 import com.gauravk.bubblebarsample.DB.ShowRoutine.HomeViewAdapter;
+import com.gauravk.bubblebarsample.Dto.GetInfoListener;
 import com.gauravk.bubblebarsample.R;
 import com.gauravk.bubblebarsample.cfg.Config;
+import com.gauravk.bubblebarsample.cfg.RetrofitObject;
+import com.gauravk.bubblebarsample.cfg.userConfig;
 import com.gauravk.bubblebarsample.mlkit.mlpose.RoutineCameraXLivePreviewActivity;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.android.gms.tasks.Tasks;
-import com.google.android.gms.wearable.Asset;
-import com.google.android.gms.wearable.CapabilityClient;
-import com.google.android.gms.wearable.CapabilityInfo;
-import com.google.android.gms.wearable.DataClient;
-import com.google.android.gms.wearable.DataEventBuffer;
-import com.google.android.gms.wearable.DataItem;
-import com.google.android.gms.wearable.MessageClient;
-import com.google.android.gms.wearable.MessageEvent;
-import com.google.android.gms.wearable.Node;
-import com.google.android.gms.wearable.PutDataMapRequest;
-import com.google.android.gms.wearable.PutDataRequest;
-import com.google.android.gms.wearable.Wearable;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Collection;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.ScheduledFuture;
-import java.util.concurrent.ScheduledThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
 
 
 public class HomeFragment extends Fragment
-        implements CircleProgressBar.ProgressFormatter {
+        implements CircleProgressBar.ProgressFormatter, GetInfoListener {
 
     private QueryClass databaseQueryClass;
 
@@ -99,6 +65,12 @@ public class HomeFragment extends Fragment
     @Override
     public void onStart() {
         super.onStart();
+        Config.selected_weekday = Config.today_hangle();
+        Config.setToday();
+        Config.setWeek();
+        if(userConfig.getInstance().getWeekData() == null){
+            RetrofitObject.getInstance().GetInfo(this::onGetInfoSuccess);
+        }
         Days_routineList = new ArrayList<>();
         button = getView().findViewById(R.id.exercise_start_btn);
 
@@ -120,10 +92,7 @@ public class HomeFragment extends Fragment
             }
         });
 
-        routineListRecyclerViewAdapter = new HomeViewAdapter(getActivity(), Days_routineList);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
-        recyclerView.setAdapter(routineListRecyclerViewAdapter);
-        set_circle();
+        //set_circle();
     }
 
     public void set_circle() {
@@ -154,5 +123,12 @@ public class HomeFragment extends Fragment
     @Override
     public CharSequence format(int progress, int max) {
         return String.format(DEFAULT_PATTERN, (int) ((float) progress / (float) max * 100));
+    }
+
+    @Override
+    public void onGetInfoSuccess() {
+        routineListRecyclerViewAdapter = new HomeViewAdapter(getActivity(), userConfig.getInstance().getWeekData().getDateInfo(Config.weekDate.get(Config.selected_weekday)));
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
+        recyclerView.setAdapter(routineListRecyclerViewAdapter);
     }
 }

@@ -127,9 +127,9 @@ public class RoutineCreateDialogF extends DialogFragment {
                 Repeat_num = Repeat.getValue();
                 Rest_time = Rest.getValue();
                 info tempInfo = new info(date,email,exername,Regno,Set_num,Repeat_num,Rest_time,0,0);
-
                 //만들때는 0으로
                 RetrofitObject.getInstance().CreateInfo(tempInfo);
+                ///RoutineCreateListener.onRoutineCreated(tempInfo);
 
             }
         });

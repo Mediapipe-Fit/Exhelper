@@ -8,7 +8,6 @@ import java.util.Date;
 import java.util.HashMap;
 
 public class Config {
-
     public static String Domain = "https://www.exhelper.site/";
     public static final String DATABASE_NAME = "Routine-db";
 
@@ -33,14 +32,16 @@ public class Config {
     public static long selected_ID = -1;
     public static SimpleDateFormat yyyyMMdd = new SimpleDateFormat("yyyy-MM-dd");
     public static Calendar calendar = Calendar.getInstance();
+    // weekDate에는 "일" : "2022-03-27", "월" : "2022-03-28" 이런식으로 날짜가 지정됨
     public static HashMap<String,String> weekDate = new HashMap<>();
+
     public static String[] hangleDate = new String[]{"없음","일","월","화","수","목","금","토"};
 
     public static void setToday(){
         calendar.setTime(new Date());
     }
 
-    public static void setWeek(){
+    public static void setWeek(){ // 오늘 부터 앞으로 일주일간 날짜 지정하는 함수
         Calendar tmpcal = calendar;
         int temp_index = index;
         int cnt = 0;
@@ -63,5 +64,8 @@ public class Config {
     public static String today_hangle(){
         index = calendar.get(Calendar.DAY_OF_WEEK);
         return hangleDate[index];
+    }
+    public static String today_string(){
+        return weekDate.get(today_hangle());
     }
 }

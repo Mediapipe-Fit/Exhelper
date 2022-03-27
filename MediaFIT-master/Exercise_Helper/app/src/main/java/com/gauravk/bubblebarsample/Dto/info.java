@@ -51,10 +51,21 @@ public class info {
     public void setExername(String exername){this.exername = exername;}
     public void setSequence(int sequence){this.sequence = sequence;}
     public void setSetNum(int setNum){this.setNum = setNum;}
-    public void setEepeatNum(int repeatNum){this.repeatNum = repeatNum;}
+    public void setRepeatNum(int repeatNum){this.repeatNum = repeatNum;}
     public void setRestTime(int restTime){this.restTime = restTime;}
     public void setSetComplete(int setComplete){this.setComplete = setComplete;}
     public void setCurrent(int current){this.current = current;}
+
+    public String getDate(){return this.date;}
+    public String getEmail(){return this.email;}
+    public String getExername(){return this.exername;}
+    public int getSequence(){return this.sequence;}
+    public int getSetNum(){return this.setNum;}
+    public int getRepeatNum(){return this.repeatNum;}
+    public int getRestTime(){return this.restTime;}
+    public int getSetComplete(){return this.setComplete;}
+    public int getCurrent(){return this.current;}
+
 
     @Override
     public String toString()

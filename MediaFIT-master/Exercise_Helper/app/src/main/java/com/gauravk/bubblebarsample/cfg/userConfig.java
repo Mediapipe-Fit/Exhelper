@@ -1,5 +1,8 @@
 package com.gauravk.bubblebarsample.cfg;
 
+import com.gauravk.bubblebarsample.Dto.GetInfoListener;
+import com.gauravk.bubblebarsample.Dto.infoWeek;
+
 public class userConfig {
     private static userConfig instance = null;
     public static synchronized userConfig getInstance(){
@@ -15,6 +18,9 @@ public class userConfig {
     private String age_range;
     private String birthday;
     private Integer gender;
+    private infoWeek weekData = null;
+    private GetInfoListener HomeInfoListener;
+    private GetInfoListener RoutineInfoListener;
 
     public String getEmail() { return this.email; }
     public String getProfile() { return this.profile; }
@@ -22,6 +28,8 @@ public class userConfig {
     public int getGender() { return this.gender; }
     public String getAge_range() { return this.age_range; }
     public String getBirthday() { return this.birthday; }
+    public infoWeek getWeekData() {return this.weekData;}
+    public GetInfoListener getRoutineInfoListener(){return this.RoutineInfoListener;}
 
     public void setEmail(String email){this.email = email;}
     public void setGender(String gender){
@@ -37,4 +45,7 @@ public class userConfig {
     public void setAge_range(String age_range){this.age_range = age_range;}
     public void setNickname(String nickname){this.nickname = nickname;}
     public void setProfile(String profile){this.profile = profile;}
+    public void setWeekData(infoWeek weekData){this.weekData = weekData;}
+    public void setHomeInfoListener(GetInfoListener HomeInfoListener){this.HomeInfoListener = HomeInfoListener;}
+    public void setRoutineInfoListener(GetInfoListener RoutineInfoListener){this.RoutineInfoListener = RoutineInfoListener;}
 }

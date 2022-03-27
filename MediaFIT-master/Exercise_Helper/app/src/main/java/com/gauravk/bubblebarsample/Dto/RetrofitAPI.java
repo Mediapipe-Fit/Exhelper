@@ -5,6 +5,7 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface RetrofitAPI {
 
@@ -35,6 +36,9 @@ public interface RetrofitAPI {
 
     @POST("/info")
     Call<post_response> CreateInfo(@Body info Info);
+
+    @GET("/info/{email}")
+    Call<infoWeek> GetInfo(@Path("email") String email,@Query("date") String day);
     /*
     보내는 함수
     postuser에 다 넣고 보내면 댐
