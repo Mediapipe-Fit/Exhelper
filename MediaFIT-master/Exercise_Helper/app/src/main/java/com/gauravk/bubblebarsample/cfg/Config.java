@@ -29,7 +29,6 @@ public class Config {
     public static final String UPDATE_Routine = "update_Routine";
 
     public static String selected_weekday = "";
-    public static long selected_ID = -1;
     public static SimpleDateFormat yyyyMMdd = new SimpleDateFormat("yyyy-MM-dd");
     public static Calendar calendar = Calendar.getInstance();
     // weekDate에는 "일" : "2022-03-27", "월" : "2022-03-28" 이런식으로 날짜가 지정됨
@@ -67,5 +66,8 @@ public class Config {
     }
     public static String today_string(){
         return weekDate.get(today_hangle());
+    }
+    public static String selectedString(){
+        return weekDate.get(selected_weekday);
     }
 }
