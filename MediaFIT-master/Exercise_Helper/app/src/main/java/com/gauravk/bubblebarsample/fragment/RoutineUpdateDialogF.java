@@ -46,11 +46,12 @@ public class RoutineUpdateDialogF extends DialogFragment {
     private Spinner RegNo;
 
 
-    private String temp = "";
-    private long Regno = -1;
-    private long Set_num = -1;
-    private long Repeat_num = -1;
-    private long Rest_time = -1;
+    private String Exername = "";
+    private int Regno = -1;
+    private int Set_num = -1;
+    private int Repeat_num = -1;
+    private int Rest_time = -1;
+    private int SequencePosition = -1;
 
     private QueryClass DBQueryClass;
     private NumberPicker Set,Repeat,Rest;
@@ -58,9 +59,8 @@ public class RoutineUpdateDialogF extends DialogFragment {
         // Required empty public constructor
     }
 
-    public static RoutineUpdateDialogF newInstance(long ID, RoutineUpdateListener listener){
-        routineItemID = (int)ID;
-        routineUpdateListener = listener;
+    public static RoutineUpdateDialogF newInstance(int position){
+        routineItemID = position;
         RoutineUpdateDialogF routineUpdateDialogFragment = new RoutineUpdateDialogF();
         Bundle args = new Bundle();
         args.putString("title", Config.selected_weekday+"요일 루틴 업데이트");
@@ -71,6 +71,10 @@ public class RoutineUpdateDialogF extends DialogFragment {
         return routineUpdateDialogFragment;
     }
 
+    public void setSelectedInfo(info Info){
+        selectedInfo = Info;
+    }
+
     public int getIndex(String s){
         String[] Excercise_names = getResources().getStringArray(R.array.Exercises);
         for(int i=0;i<Excercise_names.length ;++i){
@@ -79,6 +83,15 @@ public class RoutineUpdateDialogF extends DialogFragment {
             }
         }
         return 0;
+    }
+    public void setSequencePosition(List<String> Temp){
+
+        for(int i = 0; i < Temp.size();++i ){
+            if(Temp.get(i) == String.valueOf(selectedInfo.getSequence())){
+                SequencePosition = i;
+                break;
+            }
+        }
     }
 
     @Override
@@ -167,7 +180,7 @@ public class RoutineUpdateDialogF extends DialogFragment {
     }
 
 
-    public NumberPicker set_nummber_picker(NumberPicker numberPicker, int num){
+    public NumberPicker set_nummber_picker(NumberPicker numberPicker, int num, int min_num, int max_num){
         // Set divider color
         numberPicker.setDividerColor(ContextCompat.getColor(getContext(), R.color.colorPrimary));
         numberPicker.setDividerColorResource(R.color.colorPrimary);
@@ -208,8 +221,8 @@ public class RoutineUpdateDialogF extends DialogFragment {
 
 
         // Set value
-        numberPicker.setMaxValue(60);
-        numberPicker.setMinValue(0);
+        numberPicker.setMaxValue(max_num);
+        numberPicker.setMinValue(min_num);
         numberPicker.setValue(num);
 
         // Set string values

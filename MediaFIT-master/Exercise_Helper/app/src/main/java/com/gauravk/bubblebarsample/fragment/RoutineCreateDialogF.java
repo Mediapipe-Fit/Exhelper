@@ -28,7 +28,6 @@ import java.util.Locale;
 
 public class RoutineCreateDialogF extends DialogFragment {
 
-    private static RoutineCreateListener RoutineCreateListener;
 
     //private EditText Exercise_nameEditText;
     private EditText Set_numEditText;
@@ -55,8 +54,7 @@ public class RoutineCreateDialogF extends DialogFragment {
         // Required empty public constructor
     }
 
-    public static RoutineCreateDialogF newInstance(String title, RoutineCreateListener listener){
-        RoutineCreateListener = listener;
+    public static RoutineCreateDialogF newInstance(String title){
         RoutineCreateDialogF RoutineCreateDialogF = new RoutineCreateDialogF();
         Bundle args = new Bundle();
         args.putString("title", title);
@@ -72,7 +70,6 @@ public class RoutineCreateDialogF extends DialogFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.routine_create_dialog_f, container, false);
-        DBQueryClass = new QueryClass(getActivity());
         createButton = view.findViewById(R.id.createButton);
         cancelButton = view.findViewById(R.id.cancelButton);
 
@@ -83,8 +80,7 @@ public class RoutineCreateDialogF extends DialogFragment {
         Excercise_name.setAdapter(Exercise_Adapter);
 
         RegNo = view.findViewById(R.id.Spinner_RegNO);
-        ArrayAdapter RegNo_Adapter = new ArrayAdapter<>(getActivity(),android.R.layout.simple_spinner_dropdown_item,DBQueryClass.getDaysRegNo(Config.selected_weekday));
-        RegNo.setAdapter(RegNo_Adapter);
+        setSequenceAdapter();
 
 
         String title = getArguments().getString(Config.TITLE);
@@ -143,6 +139,10 @@ public class RoutineCreateDialogF extends DialogFragment {
 
         return view;
     }
+    public void setSequenceAdapter(){
+        ArrayAdapter RegNo_Adapter = new ArrayAdapter<>(getActivity(),android.R.layout.simple_spinner_dropdown_item,userConfig.getInstance().getWeekData().getSequence(Config.selectedString()));
+        RegNo.setAdapter(RegNo_Adapter);
+    }
 
     @Override
     public void onStart() {
@@ -154,12 +154,12 @@ public class RoutineCreateDialogF extends DialogFragment {
             //noinspection ConstantConditions
             dialog.getWindow().setLayout(width, height);
         }
-        Set = set_nummber_picker(R.id.number_picker_Set_num,3);
-        Repeat = set_nummber_picker(R.id.number_picker_Repeat_num,10);
-        Rest = set_nummber_picker(R.id.number_picker_Rest_time,30);
+        Set = set_nummber_picker(R.id.number_picker_Set_num,3, 1, 20);
+        Repeat = set_nummber_picker(R.id.number_picker_Repeat_num,10, 1, 50);
+        Rest = set_nummber_picker(R.id.number_picker_Rest_time,30, 10, 60);
     }
 
-    public NumberPicker set_nummber_picker(int id, int num){
+    public NumberPicker set_nummber_picker(int id, int num, int min_num, int max_num){
         final NumberPicker numberPicker = getView().findViewById(id);
 
         // Set divider color
@@ -201,8 +201,8 @@ public class RoutineCreateDialogF extends DialogFragment {
         numberPicker.setTypeface(R.string.roboto_light);
 
         // Set value
-        numberPicker.setMaxValue(60);
-        numberPicker.setMinValue(0);
+        numberPicker.setMaxValue(max_num);
+        numberPicker.setMinValue(min_num);
         numberPicker.setValue(num);
 
         // Set fading edge enabled

@@ -19,7 +19,8 @@ import com.dinuscxj.progressbar.CircleProgressBar;
 import com.gauravk.bubblebarsample.DB.CreateRoutine.Routine;
 import com.gauravk.bubblebarsample.DB.QueryClass;
 import com.gauravk.bubblebarsample.DB.ShowRoutine.HomeViewAdapter;
-import com.gauravk.bubblebarsample.Dto.GetInfoListener;
+import com.gauravk.bubblebarsample.Dto.InfoChangeListener;
+import com.gauravk.bubblebarsample.Dto.info;
 import com.gauravk.bubblebarsample.R;
 import com.gauravk.bubblebarsample.cfg.Config;
 import com.gauravk.bubblebarsample.cfg.RetrofitObject;
@@ -31,11 +32,11 @@ import java.util.List;
 
 
 public class HomeFragment extends Fragment
-        implements CircleProgressBar.ProgressFormatter, GetInfoListener {
+        implements CircleProgressBar.ProgressFormatter, InfoChangeListener {
 
     private QueryClass databaseQueryClass;
 
-    private List<Routine> Days_routineList;
+    private List<info> Days_routineList = new ArrayList<>();
 
     private RecyclerView recyclerView;
     private HomeViewAdapter routineListRecyclerViewAdapter;
@@ -56,7 +57,6 @@ public class HomeFragment extends Fragment
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        databaseQueryClass = new QueryClass(getActivity());
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_home, container, false);
         circleProgressBar = rootView.findViewById(R.id.cpb_circlebar);
         return rootView;
@@ -68,16 +68,14 @@ public class HomeFragment extends Fragment
         Config.selected_weekday = Config.today_hangle();
         Config.setToday();
         Config.setWeek();
-        if(userConfig.getInstance().getWeekData() == null){
-            RetrofitObject.getInstance().GetInfo(this::onGetInfoSuccess);
+        if(userConfig.getInstance().getWeekData() == null) {
+            RetrofitObject.getInstance().GetInfo(this);
         }
-        Days_routineList = new ArrayList<>();
+        else{
+            onInfoGetSuccesse();
+        }
         button = getView().findViewById(R.id.exercise_start_btn);
-
-
         recyclerView = (RecyclerView) getView().findViewById(R.id.home_recycler);
-
-        Days_routineList.addAll(databaseQueryClass.getDaysRoutine(Config.today_hangle()));
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -91,23 +89,16 @@ public class HomeFragment extends Fragment
 
             }
         });
-
-        //set_circle();
     }
 
     public void set_circle() {
+        Days_routineList = userConfig.getInstance().getWeekData().getDateInfoList(Config.today_string());
         total_setnum = 0;
         complete_setnum = 0;
         prograss_num = 0;
         for (int i = 0; i < Days_routineList.size(); ++i) {
-            Routine cur = Days_routineList.get(i);
-            if (cur.getcheck() == 1) {
-                total_setnum = total_setnum + (int) cur.getSet_num();
-                complete_setnum = complete_setnum + (int) cur.getCounts();
-                continue;
-                //Days_routineList.remove(i);
-            }
-            total_setnum = total_setnum + (int) cur.getSet_num();
+            complete_setnum = complete_setnum + Days_routineList.get(i).getSetComplete();
+            total_setnum = total_setnum + Days_routineList.get(i).getSetNum();
         }
         if (total_setnum != 0) {
             prograss_num = (int) (100 * complete_setnum / total_setnum);
@@ -119,6 +110,11 @@ public class HomeFragment extends Fragment
         Log.e("complete_setup", Integer.toString(complete_setnum));
         circleProgressBar.setProgress(prograss_num);
     }
+    public void setRecyclerView(){
+        routineListRecyclerViewAdapter = new HomeViewAdapter(getActivity(), userConfig.getInstance().getWeekData().getDateInfoList(Config.today_string()));
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
+        recyclerView.setAdapter(routineListRecyclerViewAdapter);
+    }
 
     @Override
     public CharSequence format(int progress, int max) {
@@ -126,9 +122,23 @@ public class HomeFragment extends Fragment
     }
 
     @Override
-    public void onGetInfoSuccess() {
-        routineListRecyclerViewAdapter = new HomeViewAdapter(getActivity(), userConfig.getInstance().getWeekData().getDateInfo(Config.weekDate.get(Config.selected_weekday)));
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
-        recyclerView.setAdapter(routineListRecyclerViewAdapter);
+    public void onInfoGetSuccesse() {
+        setRecyclerView();
+        set_circle();
+    }
+
+    @Override
+    public void onInfoCreated(int position) {
+
+    }
+
+    @Override
+    public void onInfoChanged(int position) {
+
+    }
+
+    @Override
+    public void onInfoDeleted(int position) {
+
     }
 }

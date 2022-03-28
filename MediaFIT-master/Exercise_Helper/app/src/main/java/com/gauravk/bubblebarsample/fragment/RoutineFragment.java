@@ -19,12 +19,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.gauravk.bubblebarsample.DB.CreateRoutine.Routine;
-import com.gauravk.bubblebarsample.DB.CreateRoutine.RoutineCreateDialogF;
-import com.gauravk.bubblebarsample.DB.CreateRoutine.RoutineCreateListener;
 import com.gauravk.bubblebarsample.DB.QueryClass;
 import com.gauravk.bubblebarsample.DB.ShowRoutine.RoutineViewAdapter;
-import com.gauravk.bubblebarsample.Dto.GetInfoListener;
-import com.gauravk.bubblebarsample.Dto.info;
+import com.gauravk.bubblebarsample.Dto.InfoChangeListener;
 import com.gauravk.bubblebarsample.R;
 import com.gauravk.bubblebarsample.cfg.Config;
 import com.gauravk.bubblebarsample.cfg.userConfig;
@@ -36,7 +33,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class RoutineFragment extends Fragment implements RoutineCreateListener, GetInfoListener {
+public class RoutineFragment extends Fragment implements InfoChangeListener {
 
     private QueryClass databaseQueryClass;
     private TextView Title;
@@ -66,7 +63,7 @@ public class RoutineFragment extends Fragment implements RoutineCreateListener, 
     @Override
     public void onStart() {
         super.onStart();
-        userConfig.getInstance().setRoutineInfoListener(this::onGetInfoSuccess);
+        userConfig.getInstance().setRoutineInfoListener(this);
         Logger.addLogAdapter(new AndroidLogAdapter());
         setBtns();
         recyclerView = (RecyclerView) getView().findViewById(R.id.RoutineRecyclerView);
@@ -123,7 +120,7 @@ public class RoutineFragment extends Fragment implements RoutineCreateListener, 
         }
     }
     public void change_View() {
-        routineListRecyclerViewAdapter = new RoutineViewAdapter(getActivity(), userConfig.getInstance().getWeekData().getDateInfo(Config.weekDate.get(Config.selected_weekday)));
+        routineListRecyclerViewAdapter = new RoutineViewAdapter(getActivity(), userConfig.getInstance().getWeekData().getDateInfoList(Config.selectedString()));
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
         recyclerView.setAdapter(routineListRecyclerViewAdapter);
         viewVisibility();
@@ -168,26 +165,38 @@ public class RoutineFragment extends Fragment implements RoutineCreateListener, 
 
     public void viewVisibility() {
         Log.d("test",Config.weekDate.get(Config.selected_weekday));
-        if(userConfig.getInstance().getWeekData().getDateInfo(Config.weekDate.get(Config.selected_weekday)).size() == 0)
+        if(userConfig.getInstance().getWeekData().getDateInfoList(Config.selectedString()).size() == 0)
             routineListEmptyTextView.setVisibility(View.VISIBLE);
         else
             routineListEmptyTextView.setVisibility(View.GONE);
     }
 
     private void openRoutineCreateDialog() {
-        RoutineCreateDialogF routineCreateDialogFragment = RoutineCreateDialogF.newInstance(Config.selected_weekday+"요일 루틴", this::onRoutineCreated);
+        RoutineCreateDialogF routineCreateDialogFragment = RoutineCreateDialogF.newInstance(Config.selected_weekday+"요일 루틴");
         routineCreateDialogFragment.show(getActivity().getSupportFragmentManager(), Config.CREATE_Routine);
     }
 
+
     @Override
-    public void onRoutineCreated(info info) {
+    public void onInfoGetSuccesse() {
         routineListRecyclerViewAdapter.notifyDataSetChanged();
-        change_View();
-        Logger.d(info.getExername());
     }
 
     @Override
-    public void onGetInfoSuccess() {
-        change_View();
+    public void onInfoCreated(int position) {
+        routineListRecyclerViewAdapter.notifyItemInserted(position);
+
+    }
+
+    @Override
+    public void onInfoChanged(int position) {
+        routineListRecyclerViewAdapter.notifyDataSetChanged();
+
+    }
+
+    @Override
+    public void onInfoDeleted(int position) {
+        routineListRecyclerViewAdapter.notifyItemRemoved(position);
+
     }
 }

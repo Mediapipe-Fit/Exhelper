@@ -2,7 +2,7 @@ package com.gauravk.bubblebarsample.Dto;
 
 import com.google.gson.annotations.SerializedName;
 
-public class info {
+public class info implements Comparable<info>{
     //기본생성자
     public info(){}
     // 전체 생성자
@@ -71,5 +71,14 @@ public class info {
     public String toString()
     {
         return "[date = "+date+", email = "+email+", exername = "+exername+", sequence = "+sequence+", setNum = "+setNum+", repeatNum = "+repeatNum+", restTime = "+restTime+", setComplete = "+setComplete+", current = "+current+"]";
+    }
+
+    @Override
+    public int compareTo(info o) {
+        if(this.sequence < o.sequence){
+            return -1;
+        }else{
+            return 1;
+        }
     }
 }
