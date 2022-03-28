@@ -7,20 +7,18 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.gauravk.bubblebarsample.BottomBarActivity;
-import com.gauravk.bubblebarsample.DB.CreateRoutine.Routine;
-import com.gauravk.bubblebarsample.DB.QueryClass;
-import com.gauravk.bubblebarsample.DB.UpdateRoutine.RoutineUpdateDialogF;
-import com.gauravk.bubblebarsample.DB.UpdateRoutine.RoutineUpdateListener;
+import com.gauravk.bubblebarsample.fragment.RoutineUpdateDialogF;
 import com.gauravk.bubblebarsample.Dto.info;
 import com.gauravk.bubblebarsample.R;
 import com.gauravk.bubblebarsample.cfg.Config;
+import com.gauravk.bubblebarsample.cfg.RetrofitObject;
+import com.gauravk.bubblebarsample.cfg.userConfig;
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
 
@@ -71,7 +69,7 @@ public class RoutineViewAdapter extends RecyclerView.Adapter<CustomViewHolder> {
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface arg0, int arg1) {
-                                deleteRoutine(itemPosition);
+                                RetrofitObject.getInstance().DeleteInfo(routine,userConfig.getInstance().getWeekData().getPosition(routine.getDate(),routine.getSequence()));
                             }
                         });
 
@@ -84,13 +82,7 @@ public class RoutineViewAdapter extends RecyclerView.Adapter<CustomViewHolder> {
         holder.editButtonImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Config.selected_ID = routine.getSequence();;
-                RoutineUpdateDialogF routineUpdateDialogFragment = RoutineUpdateDialogF.newInstance(routine.getSequence(), new RoutineUpdateListener() {
-                    @Override
-                    public void onRoutineUpdateListener(Routine routine) {
-                        resetRoutineList();
-                    }
-                });
+                RoutineUpdateDialogF routineUpdateDialogFragment = RoutineUpdateDialogF.newInstance(userConfig.getInstance().getWeekData().getPosition(routine.getDate(),routine.getSequence()));
                 routineUpdateDialogFragment.show(((BottomBarActivity) context).getSupportFragmentManager(), Config.UPDATE_Routine);
             }
         });

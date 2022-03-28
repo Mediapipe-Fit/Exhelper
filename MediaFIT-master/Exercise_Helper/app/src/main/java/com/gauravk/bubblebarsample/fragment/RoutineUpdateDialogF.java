@@ -108,64 +108,56 @@ public class RoutineUpdateDialogF extends DialogFragment {
         Excercise_name.setAdapter(Exercise_Adapter);
 
         RegNo = view.findViewById(R.id.Spinner_RegNO);
+        setSelectedInfo(userConfig.getInstance().getWeekData().getDateInfo(Config.selectedString(),routineItemID));
 
 
         String title = getArguments().getString(Config.TITLE);
         getDialog().setTitle(title);
 
-        mroutine = DBQueryClass.getRoutineByRegNum(Config.selected_ID);
-        List<String> my_list = DBQueryClass.getDaysRegNo_Update(Integer.toString(mroutine.getRegNO()),Config.selected_weekday);
-        ArrayAdapter RegNo_Adapter = new ArrayAdapter<>(getActivity(),android.R.layout.simple_spinner_dropdown_item,my_list);
-        RegNo.setAdapter(RegNo_Adapter);
+        setSequenceAdapter();
         Set = view.findViewById(R.id.number_picker_Set_num);
         Repeat = view.findViewById(R.id.number_picker_Repeat_num);
         Rest = view.findViewById(R.id.number_picker_Rest_time);
+        //Logger.d(selectedInfo);
+        //Logger.d(routineItemID);
 
-        if(mroutine!=null){
-            Excercise_name.setSelection(getIndex(mroutine.getName()));
-            RegNo.setSelection(my_list.indexOf(mroutine.getRegNO()));
-            Set = set_nummber_picker(Set, (int) mroutine.getSet_num());
-            Repeat = set_nummber_picker(Repeat, (int) mroutine.getRepeat_num());
-            Rest = set_nummber_picker(Rest,(int) mroutine.getRest_time());
-            //Set_numEditText.setText(String.valueOf(mroutine.getSet_num()));
-            //Repeat_numEditText.setText(String.valueOf(mroutine.getRepeat_num()));
-            //Rest_timeEditText.setText(String.valueOf(mroutine.getRest_time()));
-
-            updateButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    temp = Excercise_name.getSelectedItem().toString();
-                    Regno = Integer.parseInt(RegNo.getSelectedItem().toString());
-                    Set_num = Set.getValue();
-                    Repeat_num = Repeat.getValue();
-                    Rest_time = Rest.getValue();
-
-                    mroutine.setName(temp);
-                    mroutine.setRegNO(Regno);
-                    mroutine.setSet_num(Set_num);
-                    mroutine.setRepeat_num(Repeat_num);
-                    mroutine.setRest_time(Rest_time);
-
-                    DBQueryClass.updateRoutineInfo(mroutine);
-                    routineUpdateListener.onRoutineUpdateListener(mroutine);
-                    getDialog().dismiss();
-                    //Log.i("DB_Update_Routine_in_D", String.format("ID = %d, RegNO = %d, name = %s, Set_num = %d, Repeat_num = %d, Rest_time = %d", -1 , Regno, temp , Set_num, Repeat_num, Repeat_num));
-
-                }
-            });
-
-            cancelButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    getDialog().dismiss();
-                }
-            });
-
-        }
+        Excercise_name.setSelection(getIndex(selectedInfo.getExername()));
+        RegNo.setSelection(SequencePosition);
+        Set = set_nummber_picker(Set, (int) selectedInfo.getSetNum(),1, 20);
+        Repeat = set_nummber_picker(Repeat, (int) selectedInfo.getRepeatNum(),1, 50);
+        Rest = set_nummber_picker(Rest,(int) selectedInfo.getRestTime(),10, 60);
+        updateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Exername = Excercise_name.getSelectedItem().toString();
+                Regno = Integer.parseInt(RegNo.getSelectedItem().toString());
+                Set_num = Set.getValue();
+                Repeat_num = Repeat.getValue();
+                Rest_time = Rest.getValue();
+                Logger.d(selectedInfo);
+                info temp = new info(selectedInfo.getDate(), selectedInfo.getEmail(), Exername, Regno,Set_num,Repeat_num,Rest_time, selectedInfo.getSetComplete(), selectedInfo.getCurrent());
+                RetrofitObject.getInstance().UpdateInfo(selectedInfo.getExername(), selectedInfo.getSequence(),temp,routineItemID);
+                userConfig.getInstance().getWeekData().setDateInfo(selectedInfo.getDate(),routineItemID,temp);
+                //selectedInfo = temp;
+                getDialog().dismiss();
+                //Log.i("DB_Update_Routine_in_D", String.format("ID = %d, RegNO = %d, name = %s, Set_num = %d, Repeat_num = %d, Rest_time = %d", -1 , Regno, temp , Set_num, Repeat_num, Repeat_num));
+            }
+        });
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getDialog().dismiss();
+            }
+        });
 
         return view;
     }
-
+    public void setSequenceAdapter(){
+        List<String> Temp = userConfig.getInstance().getWeekData().getMySequence(Config.selectedString(), selectedInfo.getSequence());
+        setSequencePosition(Temp);
+        ArrayAdapter RegNo_Adapter = new ArrayAdapter<>(getActivity(),android.R.layout.simple_spinner_dropdown_item, Temp);
+        RegNo.setAdapter(RegNo_Adapter);
+    }
     @Override
     public void onStart() {
         super.onStart();

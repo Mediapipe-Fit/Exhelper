@@ -124,8 +124,10 @@ public class RoutineCreateDialogF extends DialogFragment {
                 Rest_time = Rest.getValue();
                 info tempInfo = new info(date,email,exername,Regno,Set_num,Repeat_num,Rest_time,0,0);
                 //만들때는 0으로
-                RetrofitObject.getInstance().CreateInfo(tempInfo);
-                ///RoutineCreateListener.onRoutineCreated(tempInfo);
+                int position = userConfig.getInstance().getWeekData().getInsertedPosition(date,Regno);
+                RetrofitObject.getInstance().CreateInfo(tempInfo,position);
+                userConfig.getInstance().getWeekData().getDateInfoList(date).add(position,tempInfo);
+                setSequenceAdapter(); // 순서 부분만 Unique하게 새로운 콤보박스를 만들어줌.
 
             }
         });

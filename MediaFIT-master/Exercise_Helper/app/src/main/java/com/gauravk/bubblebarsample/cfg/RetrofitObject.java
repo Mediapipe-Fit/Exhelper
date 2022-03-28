@@ -2,12 +2,14 @@ package com.gauravk.bubblebarsample.cfg;
 
 import android.util.Log;
 
-import com.gauravk.bubblebarsample.Dto.GetInfoListener;
+import com.gauravk.bubblebarsample.Dto.CUD_Response;
+import com.gauravk.bubblebarsample.Dto.InfoChangeListener;
 import com.gauravk.bubblebarsample.Dto.RetrofitAPI;
 import com.gauravk.bubblebarsample.Dto.info;
 import com.gauravk.bubblebarsample.Dto.infoWeek;
-import com.gauravk.bubblebarsample.Dto.post_response;
 import com.gauravk.bubblebarsample.Dto.user;
+
+import java.util.Collections;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -41,9 +43,9 @@ public class RetrofitObject{
         postuser.setAge(userConfig.getInstance().getAge_range());
 
 
-        retrofitAPI.CreateAndUpdateUser(postuser).enqueue(new Callback<post_response>() {
+        retrofitAPI.CreateAndUpdateUser(postuser).enqueue(new Callback<CUD_Response>() {
             @Override
-            public void onResponse(Call<post_response> call, Response<post_response> response){
+            public void onResponse(Call<CUD_Response> call, Response<CUD_Response> response){
                 //           Log.d("test",response.message());
                 if(response.isSuccessful()){
                     Log.d("CUser",response.body().getMessage());
@@ -52,46 +54,86 @@ public class RetrofitObject{
                     Log.d("CUser","CreateOrUpdate 통신 오류 : " + response.body());
                 }
             }
-            public void onFailure(Call<post_response> call, Throwable t){
+            public void onFailure(Call<CUD_Response> call, Throwable t){
                 Log.d("CUser","CreateOrUpdate 통신 실패");
             }
         });
     }
 
-    public void CreateInfo(info curInfo){
+    public void CreateInfo(info curInfo,int position){
 
-        retrofitAPI.CreateInfo(curInfo).enqueue(new Callback<post_response>() {
+        retrofitAPI.CreateInfo(curInfo).enqueue(new Callback<CUD_Response>() {
             @Override
-            public void onResponse(Call<post_response> call, Response<post_response> response){
+            public void onResponse(Call<CUD_Response> call, Response<CUD_Response> response){
                 if(response.isSuccessful()){
-                    Log.d("CInfo",response.body().getMessage());
-                    GetInfo(userConfig.getInstance().getRoutineInfoListener());
+                    Log.d("CInfo","CreateInfo 통신 성공");
+                    //GetInfo(userConfig.getInstance().getRoutineInfoListener());
+                    userConfig.getInstance().getRoutineInfoListener().onInfoCreated(position);
                 }
                 else{
                     Log.d("CInfo","CreateInfo 통신 오류");
                 }
             }
-            public void onFailure(Call<post_response> call, Throwable t){
+            public void onFailure(Call<CUD_Response> call, Throwable t){
                 Log.d("CInfo","CreateInfo 통신 실패");
             }
         });
     }
-    public void GetInfo(GetInfoListener getInfoListener){
+    public void GetInfo(InfoChangeListener infoChangeListener){
         retrofitAPI.GetInfo(userConfig.getInstance().getEmail(),Config.today_string()).enqueue(new Callback<infoWeek>() {
             @Override
             public void onResponse(Call<infoWeek> call, Response<infoWeek> response){
                 if(response.isSuccessful()){
-                    Log.d("GInfo","GetInfoListener 통신 성공");
+                    Log.d("GInfo","GetInfo 통신 성공");
                     userConfig.getInstance().setWeekData(response.body());
                     userConfig.getInstance().getWeekData().setDateInfo();
-                    getInfoListener.onGetInfoSuccess();
+                    infoChangeListener.onInfoGetSuccesse();
                 }
                 else{
-                    Log.d("GInfo","GetInfoListener 통신 오류");
+                    Log.d("GInfo","GetInfo 통신 오류");
                 }
             }
             public void onFailure(Call<infoWeek> call, Throwable t){
-                Log.d("GInfo","GetInfoListener 통신 실패");
+                Log.d("GInfo","GetInfo 통신 실패");
+            }
+        });
+    }
+    public void DeleteInfo(info selected, int position){
+        retrofitAPI.DeleteInfo(userConfig.getInstance().getEmail(),selected.getDate(),selected.getExername(),selected.getSequence()).enqueue(new Callback<CUD_Response>() {
+            @Override
+            public void onResponse(Call<CUD_Response> call, Response<CUD_Response> response) {
+                if (response.isSuccessful()) {
+                    if (response.isSuccessful()) {
+                        Log.d("DInfo", "DeleteInfo 통신 성공");
+                        userConfig.getInstance().getWeekData().getDateInfoList(selected.getDate()).remove(position);
+                        userConfig.getInstance().getRoutineInfoListener().onInfoDeleted(position);
+                    } else {
+                        Log.d("DInfo", "DeleteInfo 통신 오류");
+                    }
+                }
+            }
+            public void onFailure(Call<CUD_Response> call, Throwable t){
+                    Log.d("DInfo","DeleteInfo 통신 실패");
+            }
+        });
+    }
+
+    public void UpdateInfo(String PreExerName, int PreSequence, info selected, int position){
+        retrofitAPI.UpdateInfo(selected.getEmail(),selected.getDate(),PreExerName,PreSequence,selected).enqueue(new Callback<CUD_Response>() {
+            @Override
+            public void onResponse(Call<CUD_Response> call, Response<CUD_Response> response) {
+                if (response.isSuccessful()) {
+                    if (response.isSuccessful()) {
+                        Log.d("UInfo", "UpdateInfo 통신 성공");
+                        Collections.sort(userConfig.getInstance().getWeekData().getDateInfoList(selected.getDate()));
+                        userConfig.getInstance().getRoutineInfoListener().onInfoChanged(position);
+                    } else {
+                        Log.d("UInfo", "UpdateInfo 통신 오류");
+                    }
+                }
+            }
+            public void onFailure(Call<CUD_Response> call, Throwable t){
+                Log.d("UInfo","UpdateInfo 통신 실패");
             }
         });
     }
