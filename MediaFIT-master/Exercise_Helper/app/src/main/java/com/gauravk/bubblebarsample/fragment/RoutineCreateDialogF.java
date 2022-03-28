@@ -1,4 +1,4 @@
-package com.gauravk.bubblebarsample.DB.CreateRoutine;
+package com.gauravk.bubblebarsample.fragment;
 
 import android.app.Dialog;
 import android.graphics.Typeface;

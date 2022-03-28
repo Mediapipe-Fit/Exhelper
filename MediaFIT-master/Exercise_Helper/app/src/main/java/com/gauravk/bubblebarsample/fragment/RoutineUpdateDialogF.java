@@ -1,4 +1,4 @@
-package com.gauravk.bubblebarsample.DB.UpdateRoutine;
+package com.gauravk.bubblebarsample.fragment;
 
 
 import android.app.Dialog;
@@ -16,10 +16,14 @@ import android.widget.Spinner;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.DialogFragment;
 
-import com.gauravk.bubblebarsample.DB.CreateRoutine.Routine;
 import com.gauravk.bubblebarsample.DB.QueryClass;
+import com.gauravk.bubblebarsample.Dto.info;
 import com.gauravk.bubblebarsample.R;
 import com.gauravk.bubblebarsample.cfg.Config;
+import com.gauravk.bubblebarsample.cfg.RetrofitObject;
+import com.gauravk.bubblebarsample.cfg.userConfig;
+import com.orhanobut.logger.AndroidLogAdapter;
+import com.orhanobut.logger.Logger;
 import com.shawnlin.numberpicker.NumberPicker;
 
 import java.util.List;
@@ -29,9 +33,8 @@ import java.util.Locale;
 public class RoutineUpdateDialogF extends DialogFragment {
 
     private static int routineItemID;
-    private static RoutineUpdateListener routineUpdateListener;
 
-    private Routine mroutine;
+    private info selectedInfo;
 
     private EditText Set_numEditText;
     private EditText Repeat_numEditText;
@@ -83,7 +86,6 @@ public class RoutineUpdateDialogF extends DialogFragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.routine_update_dialog_f, container, false);
 
-        DBQueryClass = new QueryClass(getContext());
         updateButton = view.findViewById(R.id.updateRoutineInfoButton);
         cancelButton = view.findViewById(R.id.cancelButton);
         Excercise_name = view.findViewById(R.id.Exercise);
@@ -154,6 +156,7 @@ public class RoutineUpdateDialogF extends DialogFragment {
     @Override
     public void onStart() {
         super.onStart();
+        Logger.addLogAdapter(new AndroidLogAdapter());
         Dialog dialog = getDialog();
         if (dialog != null) {
             int width = ViewGroup.LayoutParams.MATCH_PARENT;
@@ -202,6 +205,7 @@ public class RoutineUpdateDialogF extends DialogFragment {
         numberPicker.setTypeface(getString(R.string.roboto_light));
         numberPicker.setTypeface(R.string.roboto_light, Typeface.NORMAL);
         numberPicker.setTypeface(R.string.roboto_light);
+
 
         // Set value
         numberPicker.setMaxValue(60);
