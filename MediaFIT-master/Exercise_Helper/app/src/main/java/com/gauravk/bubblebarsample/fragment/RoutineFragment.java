@@ -1,5 +1,6 @@
 package com.gauravk.bubblebarsample.fragment;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
@@ -120,10 +121,10 @@ public class RoutineFragment extends Fragment implements InfoChangeListener {
         }
     }
     public void change_View() {
+        viewVisibility();
         routineListRecyclerViewAdapter = new RoutineViewAdapter(getActivity(), userConfig.getInstance().getWeekData().getDateInfoList(Config.selectedString()));
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
         recyclerView.setAdapter(routineListRecyclerViewAdapter);
-        viewVisibility();
     }
 
 
@@ -164,7 +165,6 @@ public class RoutineFragment extends Fragment implements InfoChangeListener {
     }
 
     public void viewVisibility() {
-        Log.d("test",Config.weekDate.get(Config.selected_weekday));
         if(userConfig.getInstance().getWeekData().getDateInfoList(Config.selectedString()).size() == 0)
             routineListEmptyTextView.setVisibility(View.VISIBLE);
         else
@@ -172,8 +172,6 @@ public class RoutineFragment extends Fragment implements InfoChangeListener {
     }
 
     private void openRoutineCreateDialog() {
-        RoutineCreateDialogF routineCreateDialogFragment = RoutineCreateDialogF.newInstance(Config.selected_weekday+"요일 루틴");
-        routineCreateDialogFragment.show(getActivity().getSupportFragmentManager(), Config.CREATE_Routine);
         if(userConfig.getInstance().getWeekData().getDateInfoList(Config.selectedString()).size() == 10){
             Config.createCanNotMakeRoutineDialog(getActivity());
         }
@@ -187,23 +185,28 @@ public class RoutineFragment extends Fragment implements InfoChangeListener {
     @Override
     public void onInfoGetSuccesse() {
         routineListRecyclerViewAdapter.notifyDataSetChanged();
+        viewVisibility();
     }
 
     @Override
     public void onInfoCreated(int position) {
         routineListRecyclerViewAdapter.notifyItemInserted(position);
+        viewVisibility();
 
     }
 
     @Override
     public void onInfoChanged(int position) {
         routineListRecyclerViewAdapter.notifyDataSetChanged();
+        viewVisibility();
 
     }
 
     @Override
     public void onInfoDeleted(int position) {
         routineListRecyclerViewAdapter.notifyItemRemoved(position);
-
+        viewVisibility();
     }
+
+
 }
