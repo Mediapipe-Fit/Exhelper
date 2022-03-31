@@ -174,6 +174,13 @@ public class RoutineFragment extends Fragment implements InfoChangeListener {
     private void openRoutineCreateDialog() {
         RoutineCreateDialogF routineCreateDialogFragment = RoutineCreateDialogF.newInstance(Config.selected_weekday+"요일 루틴");
         routineCreateDialogFragment.show(getActivity().getSupportFragmentManager(), Config.CREATE_Routine);
+        if(userConfig.getInstance().getWeekData().getDateInfoList(Config.selectedString()).size() == 10){
+            Config.createCanNotMakeRoutineDialog(getActivity());
+        }
+        else{
+            RoutineCreateDialogF routineCreateDialogFragment = RoutineCreateDialogF.newInstance(Config.selected_weekday+"요일 루틴");
+            routineCreateDialogFragment.show(getActivity().getSupportFragmentManager(), Config.CREATE_Routine);
+        }
     }
 
 

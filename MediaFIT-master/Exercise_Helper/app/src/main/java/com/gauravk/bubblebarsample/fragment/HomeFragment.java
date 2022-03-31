@@ -68,6 +68,7 @@ public class HomeFragment extends Fragment
         Config.selected_weekday = Config.today_hangle();
         Config.setToday();
         Config.setWeek();
+        recyclerView = (RecyclerView) getView().findViewById(R.id.home_recycler); // 정의 후에 사용해야함!.
         if(userConfig.getInstance().getWeekData() == null) {
             RetrofitObject.getInstance().GetInfo(this);
         }
@@ -75,7 +76,6 @@ public class HomeFragment extends Fragment
             onInfoGetSuccesse();
         }
         button = getView().findViewById(R.id.exercise_start_btn);
-        recyclerView = (RecyclerView) getView().findViewById(R.id.home_recycler);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

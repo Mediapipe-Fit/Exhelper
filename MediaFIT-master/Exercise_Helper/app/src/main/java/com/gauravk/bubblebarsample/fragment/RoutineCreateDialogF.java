@@ -115,20 +115,24 @@ public class RoutineCreateDialogF extends DialogFragment {
         createButton.setOnClickListener(new View.OnClickListener() { // 서버 DB
             @Override
             public void onClick(View view) {
-                date = Config.weekDate.get(Config.selected_weekday);
-                email = userConfig.getInstance().getEmail();
-                exername = Excercise_name.getSelectedItem().toString();
-                Regno = Integer.parseInt(RegNo.getSelectedItem().toString());
-                Set_num = Set.getValue();
-                Repeat_num = Repeat.getValue();
-                Rest_time = Rest.getValue();
-                info tempInfo = new info(date,email,exername,Regno,Set_num,Repeat_num,Rest_time,0,0);
-                //만들때는 0으로
-                int position = userConfig.getInstance().getWeekData().getInsertedPosition(date,Regno);
-                RetrofitObject.getInstance().CreateInfo(tempInfo,position);
-                userConfig.getInstance().getWeekData().getDateInfoList(date).add(position,tempInfo);
-                setSequenceAdapter(); // 순서 부분만 Unique하게 새로운 콤보박스를 만들어줌.
-
+                if(userConfig.getInstance().getWeekData().getDateInfoList(Config.selectedString()).size() == 10){
+                    Config.createCanNotMakeRoutineDialog(getActivity());
+                }
+                else {
+                    date = Config.weekDate.get(Config.selected_weekday);
+                    email = userConfig.getInstance().getEmail();
+                    exername = Excercise_name.getSelectedItem().toString();
+                    Regno = Integer.parseInt(RegNo.getSelectedItem().toString());
+                    Set_num = Set.getValue();
+                    Repeat_num = Repeat.getValue();
+                    Rest_time = Rest.getValue();
+                    info tempInfo = new info(date, email, exername, Regno, Set_num, Repeat_num, Rest_time, 0, 0);
+                    //만들때는 0으로
+                    int position = userConfig.getInstance().getWeekData().getInsertedPosition(date, Regno);
+                    RetrofitObject.getInstance().CreateInfo(tempInfo, position);
+                    userConfig.getInstance().getWeekData().getDateInfoList(date).add(position, tempInfo);
+                    setSequenceAdapter(); // 순서 부분만 Unique하게 새로운 콤보박스를 만들어줌.
+                }
             }
         });
         cancelButton.setOnClickListener(new View.OnClickListener() {

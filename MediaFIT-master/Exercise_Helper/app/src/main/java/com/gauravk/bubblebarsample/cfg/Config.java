@@ -1,6 +1,10 @@
 package com.gauravk.bubblebarsample.cfg;
 
+import android.app.Activity;
+import android.content.DialogInterface;
 import android.util.Log;
+
+import androidx.appcompat.app.AlertDialog;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -57,7 +61,19 @@ public class Config {
         }
     }
 
-
+    public static void createCanNotMakeRoutineDialog(Activity cur){
+        AlertDialog.Builder builder = new AlertDialog.Builder(cur);
+        builder.setTitle("Warning")
+                .setMessage("Can not Make a Routine more than 10 on a day!")
+                .setPositiveButton("Back", new DialogInterface.OnClickListener(){
+                    @Override
+                    public void onClick(DialogInterface dialog, int i){
+                        dialog.dismiss();
+                    }
+                });
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
 
     public static int index = -1;
     public static String today_hangle(){
