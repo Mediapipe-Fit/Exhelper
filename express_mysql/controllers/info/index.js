@@ -1,6 +1,6 @@
-const server_Error = require('../../errors/server_Error');
-const database = require('../../services/db');
-const utils = require('../../utils/common');
+import * as server_Error from '../errors/server_Error.js';
+import * as utils from '../utils/common.js';
+import * as infoRepository from '../data/info.js';
 
 // INSERT
 exports.createInfo = (req, res, next) => {

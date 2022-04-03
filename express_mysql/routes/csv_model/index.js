@@ -1,5 +1,5 @@
-const express = require("express");
-const model_controllers = require("../../controllers/csv_model");
+import express from 'express';
+import * as model_controllers from '../controllers/model.js';
 const router = express.Router();
 
 router
