@@ -18,9 +18,6 @@ public class user {
     @SerializedName("profile")
     private String profile;
 
-    public String getEmail(){
-        return email;
-    }
     public void setEmail(String email){
         this.email = email;
     }
@@ -30,20 +27,11 @@ public class user {
     public void setName(String name){
         this.name = name;
     }
-    public int getSex(){
-        return sex;
-    }
     public void setSex(int sex){
         this.sex = sex;
     }
-    public String getAge(){
-        return age;
-    }
     public void setAge(String age){
         this.age = age;
-    }
-    public String getProfile(){
-        return profile;
     }
     public void setProfile(String profile){
         this.profile = profile;

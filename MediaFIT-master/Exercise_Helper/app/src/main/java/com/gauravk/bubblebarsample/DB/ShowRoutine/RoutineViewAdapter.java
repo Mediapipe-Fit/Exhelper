@@ -7,19 +7,18 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.gauravk.bubblebarsample.BottomBarActivity;
-import com.gauravk.bubblebarsample.DB.CreateRoutine.Routine;
-import com.gauravk.bubblebarsample.DB.QueryClass;
-import com.gauravk.bubblebarsample.DB.UpdateRoutine.RoutineUpdateDialogF;
-import com.gauravk.bubblebarsample.DB.UpdateRoutine.RoutineUpdateListener;
+import com.gauravk.bubblebarsample.fragment.RoutineUpdateDialogF;
+import com.gauravk.bubblebarsample.Dto.info;
 import com.gauravk.bubblebarsample.R;
 import com.gauravk.bubblebarsample.cfg.Config;
+import com.gauravk.bubblebarsample.cfg.RetrofitObject;
+import com.gauravk.bubblebarsample.cfg.userConfig;
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
 
@@ -29,13 +28,11 @@ import java.util.List;
 public class RoutineViewAdapter extends RecyclerView.Adapter<CustomViewHolder> {
 
     private Context context;
-    private List<Routine> RoutineList;
-    private QueryClass queryClass;
+    private List<info> infoList;
 
-    public RoutineViewAdapter(Context context, List<Routine> RoutineList) {
+    public RoutineViewAdapter(Context context, List<info> infoList) {
         this.context = context;
-        this.RoutineList = RoutineList;
-        queryClass = new QueryClass(context);
+        this.infoList = infoList;
         Logger.addLogAdapter(new AndroidLogAdapter());
     }
 
@@ -48,13 +45,13 @@ public class RoutineViewAdapter extends RecyclerView.Adapter<CustomViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull CustomViewHolder holder, @SuppressLint("RecyclerView") int position) {
         final int itemPosition = position;
-        Routine routine = RoutineList.get(position);
+        info routine = infoList.get(position);
         Log.i("Holder_routine",Integer.toString(position));
-        holder.Exercise_nameTextView.setText(String.format("%d. %s",routine.getRegNO(),routine.getName()));
-        holder.Set_numTextView.setText(String.valueOf(routine.getSet_num()));
-        holder.Repeat_numTextView.setText(String.valueOf(routine.getRepeat_num()));
-        holder.Rest_timeTextView.setText(String.valueOf(routine.getRest_time()));
-        Log.i("Holder_routine", String.format("ID = %d, Reg_no = %d, name = %s, Set_num = %d, Repeat_num = %d, Rest_time = %d", routine.getId() , routine.getRegNO(), routine.getName() , routine.getSet_num(), routine.getRepeat_num(), routine.getRest_time()));
+        holder.Exercise_nameTextView.setText(String.format("%d. %s",routine.getSequence(),routine.getExername()));
+        holder.Set_numTextView.setText(String.valueOf(routine.getSetNum()));
+        holder.Repeat_numTextView.setText(String.valueOf(routine.getRepeatNum()));
+        holder.Rest_timeTextView.setText(String.valueOf(routine.getRestTime()));
+        Log.i("Holder_routine", String.format("ID = %d, Reg_no = %d, name = %s, Set_num = %d, Repeat_num = %d, Rest_time = %d", routine.getSequence() , routine.getSequence(), routine.getExername() , routine.getSetNum(), routine.getRepeatNum(), routine.getRestTime()));
 
 
         holder.crossButtonImageView.setOnClickListener(new View.OnClickListener() {
@@ -72,7 +69,7 @@ public class RoutineViewAdapter extends RecyclerView.Adapter<CustomViewHolder> {
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface arg0, int arg1) {
-                                deleteRoutine(itemPosition);
+                                RetrofitObject.getInstance().DeleteInfo(routine,userConfig.getInstance().getWeekData().getPosition(routine.getDate(),routine.getSequence()));
                             }
                         });
 
@@ -85,38 +82,21 @@ public class RoutineViewAdapter extends RecyclerView.Adapter<CustomViewHolder> {
         holder.editButtonImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Config.selected_ID = routine.getId();;
-                RoutineUpdateDialogF routineUpdateDialogFragment = RoutineUpdateDialogF.newInstance(routine.getId(), new RoutineUpdateListener() {
-                    @Override
-                    public void onRoutineUpdateListener(Routine routine) {
-                        resetRoutineList();
-                    }
-                });
+                RoutineUpdateDialogF routineUpdateDialogFragment = RoutineUpdateDialogF.newInstance(userConfig.getInstance().getWeekData().getPosition(routine.getDate(),routine.getSequence()));
                 routineUpdateDialogFragment.show(((BottomBarActivity) context).getSupportFragmentManager(), Config.UPDATE_Routine);
             }
         });
     }
     public void resetRoutineList(){
-        RoutineList.clear();
-        RoutineList.addAll(queryClass.getDaysRoutine(Config.selected_weekday));
+        infoList.clear();
     }
     private void deleteRoutine(int position) {
-        Routine Routine = RoutineList.get(position);
-        long count = queryClass.deleteRoutineByRegNum(Routine.getId());
-
-        if(count>0){
-            RoutineList.remove(position);
-            notifyDataSetChanged();
-            ((BottomBarActivity) context).viewVisibility();
-            Toast.makeText(context, "Routine deleted successfully", Toast.LENGTH_LONG).show();
-        } else
-            Toast.makeText(context, "Routine not deleted. Something wrong!", Toast.LENGTH_LONG).show();
 
     }
 
     @Override
     public int getItemCount() {
-        return RoutineList.size();
+        return infoList.size();
     }
 
 }

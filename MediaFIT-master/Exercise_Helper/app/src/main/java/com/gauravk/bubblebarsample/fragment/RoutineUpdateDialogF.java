@@ -1,4 +1,5 @@
-package com.gauravk.bubblebarsample.DB.CreateRoutine;
+package com.gauravk.bubblebarsample.fragment;
+
 
 import android.app.Dialog;
 import android.graphics.Typeface;
@@ -16,60 +17,90 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.DialogFragment;
 
 import com.gauravk.bubblebarsample.DB.QueryClass;
+import com.gauravk.bubblebarsample.Dto.info;
 import com.gauravk.bubblebarsample.R;
 import com.gauravk.bubblebarsample.cfg.Config;
+import com.gauravk.bubblebarsample.cfg.RetrofitObject;
+import com.gauravk.bubblebarsample.cfg.userConfig;
+import com.orhanobut.logger.AndroidLogAdapter;
+import com.orhanobut.logger.Logger;
 import com.shawnlin.numberpicker.NumberPicker;
 
+import java.util.List;
 import java.util.Locale;
 
 
-public class RoutineCreateDialogF extends DialogFragment {
+public class RoutineUpdateDialogF extends DialogFragment {
 
-    private static RoutineCreateListener RoutineCreateListener;
+    private static int routineItemID;
 
-    //private EditText Exercise_nameEditText;
+    private info selectedInfo;
+
     private EditText Set_numEditText;
     private EditText Repeat_numEditText;
     private EditText Rest_timeEditText;
-    private Button createButton;
+    private Button updateButton;
     private Button cancelButton;
 
     private Spinner Excercise_name;
     private Spinner RegNo;
+
+
+    private String Exername = "";
+    private int Regno = -1;
     private int Set_num = -1;
     private int Repeat_num = -1;
     private int Rest_time = -1;
-    private int Regno = -1;
-    private String temp = "";
+    private int SequencePosition = -1;
 
-    private QueryClass DBQueryClass; //DB 소환
-
+    private QueryClass DBQueryClass;
     private NumberPicker Set,Repeat,Rest;
-    public RoutineCreateDialogF() {
+    public RoutineUpdateDialogF() {
         // Required empty public constructor
     }
 
-    public static RoutineCreateDialogF newInstance(String title, RoutineCreateListener listener){
-        RoutineCreateListener = listener;
-        RoutineCreateDialogF RoutineCreateDialogF = new RoutineCreateDialogF();
+    public static RoutineUpdateDialogF newInstance(int position){
+        routineItemID = position;
+        RoutineUpdateDialogF routineUpdateDialogFragment = new RoutineUpdateDialogF();
         Bundle args = new Bundle();
-        args.putString("title", title);
-        RoutineCreateDialogF.setArguments(args);
+        args.putString("title", Config.selected_weekday+"요일 루틴 업데이트");
+        routineUpdateDialogFragment.setArguments(args);
 
-        RoutineCreateDialogF.setStyle(DialogFragment.STYLE_NORMAL, R.style.CustomDialog);
+        routineUpdateDialogFragment.setStyle(DialogFragment.STYLE_NORMAL, R.style.CustomDialog);
 
-        return RoutineCreateDialogF;
+        return routineUpdateDialogFragment;
     }
 
+    public void setSelectedInfo(info Info){
+        selectedInfo = Info;
+    }
+
+    public int getIndex(String s){
+        String[] Excercise_names = getResources().getStringArray(R.array.Exercises);
+        for(int i=0;i<Excercise_names.length ;++i){
+            if(s.contains(Excercise_names[i])){
+                return i;
+            }
+        }
+        return 0;
+    }
+    public void setSequencePosition(List<String> Temp){
+
+        for(int i = 0; i < Temp.size();++i ){
+            if(Temp.get(i) == String.valueOf(selectedInfo.getSequence())){
+                SequencePosition = i;
+                break;
+            }
+        }
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.routine_create_dialog_f, container, false);
-        DBQueryClass = new QueryClass(getActivity());
-        createButton = view.findViewById(R.id.createButton);
-        cancelButton = view.findViewById(R.id.cancelButton);
+        View view = inflater.inflate(R.layout.routine_update_dialog_f, container, false);
 
+        updateButton = view.findViewById(R.id.updateRoutineInfoButton);
+        cancelButton = view.findViewById(R.id.cancelButton);
         Excercise_name = view.findViewById(R.id.Exercise);
         ArrayAdapter Exercise_Adapter = ArrayAdapter.createFromResource(getActivity(),
                 R.array.Exercises, android.R.layout.simple_spinner_item);
@@ -77,40 +108,41 @@ public class RoutineCreateDialogF extends DialogFragment {
         Excercise_name.setAdapter(Exercise_Adapter);
 
         RegNo = view.findViewById(R.id.Spinner_RegNO);
-        ArrayAdapter RegNo_Adapter = new ArrayAdapter<>(getActivity(),android.R.layout.simple_spinner_dropdown_item,DBQueryClass.getDaysRegNo(Config.selected_weekday));
-        RegNo.setAdapter(RegNo_Adapter);
+        setSelectedInfo(userConfig.getInstance().getWeekData().getDateInfo(Config.selectedString(),routineItemID));
 
 
         String title = getArguments().getString(Config.TITLE);
         getDialog().setTitle(title);
 
-        createButton.setOnClickListener(new View.OnClickListener() {
+        setSequenceAdapter();
+        Set = view.findViewById(R.id.number_picker_Set_num);
+        Repeat = view.findViewById(R.id.number_picker_Repeat_num);
+        Rest = view.findViewById(R.id.number_picker_Rest_time);
+        //Logger.d(selectedInfo);
+        //Logger.d(routineItemID);
+
+        Excercise_name.setSelection(getIndex(selectedInfo.getExername()));
+        RegNo.setSelection(SequencePosition);
+        Set = set_nummber_picker(Set, (int) selectedInfo.getSetNum(),1, 20);
+        Repeat = set_nummber_picker(Repeat, (int) selectedInfo.getRepeatNum(),1, 50);
+        Rest = set_nummber_picker(Rest,(int) selectedInfo.getRestTime(),10, 60);
+        updateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                temp = Excercise_name.getSelectedItem().toString();
+                Exername = Excercise_name.getSelectedItem().toString();
                 Regno = Integer.parseInt(RegNo.getSelectedItem().toString());
                 Set_num = Set.getValue();
                 Repeat_num = Repeat.getValue();
                 Rest_time = Rest.getValue();
-
-                //만들때는 0으로
-                Routine routine = new Routine(-1, temp,Regno, Set_num, Repeat_num, Rest_time,0,0);
-                Log.i("Holder_routine_Make", String.format("ID = %d, Reg_no = %d, name = %s, Set_num = %d, Repeat_num = %d, Rest_time = %d", routine.getId() , routine.getRegNO(), routine.getName() , routine.getSet_num(), routine.getRepeat_num(), routine.getRest_time()));
-
-                QueryClass databaseQueryClass = new QueryClass(getContext());
-
-                long id = databaseQueryClass.insertRoutine(routine);
-
-                if(id>0){
-                    routine.setId(id);
-                    RoutineCreateListener.onRoutineCreated(routine);
-                    getDialog().dismiss();
-                }
-                //Log.i("DB_Insert_Routine_in_D", String.format("ID = %d, name = %s, Set_num = %d, Repeat_num = %d, Rest_time = %d", id , Routine.getName() , Routine.getSet_num(), Routine.getRepeat_num(), Routine.getRepeat_num()));
-
+                Logger.d(selectedInfo);
+                info temp = new info(selectedInfo.getDate(), selectedInfo.getEmail(), Exername, Regno,Set_num,Repeat_num,Rest_time, selectedInfo.getSetComplete(), selectedInfo.getCurrent());
+                RetrofitObject.getInstance().UpdateInfo(selectedInfo.getExername(), selectedInfo.getSequence(),temp,routineItemID);
+                userConfig.getInstance().getWeekData().setDateInfo(selectedInfo.getDate(),routineItemID,temp);
+                //selectedInfo = temp;
+                getDialog().dismiss();
+                //Log.i("DB_Update_Routine_in_D", String.format("ID = %d, RegNO = %d, name = %s, Set_num = %d, Repeat_num = %d, Rest_time = %d", -1 , Regno, temp , Set_num, Repeat_num, Repeat_num));
             }
         });
-
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -118,13 +150,18 @@ public class RoutineCreateDialogF extends DialogFragment {
             }
         });
 
-
         return view;
     }
-
+    public void setSequenceAdapter(){
+        List<String> Temp = userConfig.getInstance().getWeekData().getMySequence(Config.selectedString(), selectedInfo.getSequence());
+        setSequencePosition(Temp);
+        ArrayAdapter RegNo_Adapter = new ArrayAdapter<>(getActivity(),android.R.layout.simple_spinner_dropdown_item, Temp);
+        RegNo.setAdapter(RegNo_Adapter);
+    }
     @Override
     public void onStart() {
         super.onStart();
+        Logger.addLogAdapter(new AndroidLogAdapter());
         Dialog dialog = getDialog();
         if (dialog != null) {
             int width = ViewGroup.LayoutParams.MATCH_PARENT;
@@ -132,14 +169,10 @@ public class RoutineCreateDialogF extends DialogFragment {
             //noinspection ConstantConditions
             dialog.getWindow().setLayout(width, height);
         }
-        Set = set_nummber_picker(R.id.number_picker_Set_num,3);
-        Repeat = set_nummber_picker(R.id.number_picker_Repeat_num,10);
-        Rest = set_nummber_picker(R.id.number_picker_Rest_time,30);
     }
 
-    public NumberPicker set_nummber_picker(int id, int num){
-        final NumberPicker numberPicker = getView().findViewById(id);
 
+    public NumberPicker set_nummber_picker(NumberPicker numberPicker, int num, int min_num, int max_num){
         // Set divider color
         numberPicker.setDividerColor(ContextCompat.getColor(getContext(), R.color.colorPrimary));
         numberPicker.setDividerColorResource(R.color.colorPrimary);
@@ -178,10 +211,17 @@ public class RoutineCreateDialogF extends DialogFragment {
         numberPicker.setTypeface(R.string.roboto_light, Typeface.NORMAL);
         numberPicker.setTypeface(R.string.roboto_light);
 
+
         // Set value
-        numberPicker.setMaxValue(60);
-        numberPicker.setMinValue(0);
+        numberPicker.setMaxValue(max_num);
+        numberPicker.setMinValue(min_num);
         numberPicker.setValue(num);
+
+        // Set string values
+//        String[] data = {"A", "B", "C", "D", "E", "F", "G", "H", "I"};
+//        numberPicker.setMinValue(1);
+//        numberPicker.setMaxValue(data.length);
+//        numberPicker.setDisplayedValues(data);
 
         // Set fading edge enabled
         numberPicker.setFadingEdgeEnabled(true);

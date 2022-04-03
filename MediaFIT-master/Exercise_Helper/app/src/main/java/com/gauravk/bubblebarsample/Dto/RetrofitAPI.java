@@ -2,9 +2,12 @@ package com.gauravk.bubblebarsample.Dto;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface RetrofitAPI {
 
@@ -31,7 +34,21 @@ public interface RetrofitAPI {
     */
 
     @POST("/user")
-    Call<post_response> CreateAndUpdateUser(@Body user user);
+    Call<CUD_Response> CreateAndUpdateUser(@Body user user);
+
+    @POST("/info")
+    Call<CUD_Response> CreateInfo(@Body info Info);
+
+    @GET("/info/{email}")
+    Call<infoWeek> GetInfo(@Path("email") String email,@Query("date") String day);
+
+    @PUT("/info/{email}")
+    Call<CUD_Response> UpdateInfo(@Path("email") String email, @Query("date") String day,@Query("exername") String Exername, @Query("sequence") int Sequence, @Body info Info);
+
+
+    @DELETE("/info/{email}")
+    Call<CUD_Response> DeleteInfo(@Path("email") String email,@Query("date") String day,@Query("exername") String Exername,@Query("sequence") int Sequence);
+
     /*
     보내는 함수
     postuser에 다 넣고 보내면 댐
@@ -44,9 +61,9 @@ public interface RetrofitAPI {
         postuser.setAge("50~60");
 
 
-        retrofitAPI.dp(postuser).enqueue(new Callback<post_response>() {
+        retrofitAPI.dp(postuser).enqueue(new Callback<CUD_Response>() {
             @Override
-            public void onResponse(Call<post_response> call, Response<post_response> response){
+            public void onResponse(Call<CUD_Response> call, Response<CUD_Response> response){
      //           Log.d("test",response.message());
                 if(response.isSuccessful()){
                     Log.d("test","GOOD!");
@@ -55,7 +72,7 @@ public interface RetrofitAPI {
                     Log.d("test","NOT GOOD");
                 }
             }
-            public void onFailure(Call<post_response> call, Throwable t){
+            public void onFailure(Call<CUD_Response> call, Throwable t){
                 Log.d("test","개짜증");
             }
         });

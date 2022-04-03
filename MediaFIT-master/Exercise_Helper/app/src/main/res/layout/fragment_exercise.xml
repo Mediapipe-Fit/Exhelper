@@ -12,7 +12,7 @@
         android:layout_height="52dp"
         android:background="@drawable/weekday_inactive"
         android:gravity="center"
-        android:shadowColor="@color/gery_inactive"
+        android:shadowColor="@color/grey_inactive"
         android:shadowDx="8"
         android:shadowDy="8"
         android:shadowRadius="4"

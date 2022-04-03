@@ -2,7 +2,7 @@ package com.gauravk.bubblebarsample.Dto;
 
 import com.google.gson.annotations.SerializedName;
 
-public class post_response {
+public class CUD_Response {
     @SerializedName("status")
     private String status;
     @SerializedName("message")
